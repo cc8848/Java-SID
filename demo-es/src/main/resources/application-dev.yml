@@ -1,0 +1,7 @@
+#配置服务器
+server:
+  port: 8081
+#配置spring
+spring:
+  application:
+    name: demo-es

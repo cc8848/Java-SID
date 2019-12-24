@@ -1,5 +1,7 @@
 # Quaint
 .idea
+*.iml
+*prod.yml
 
 # Compiled class file
 *.class
