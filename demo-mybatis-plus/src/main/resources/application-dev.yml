@@ -7,7 +7,7 @@ spring:
     name: demojava
   datasource:
     name: demojava
-    url: jdbc:mysql://localhost:3306/demojava
+    url: jdbc:mysql://localhost:3306/demojava?setUnicode=true&characterEncoding=UTF-8&useSSL=false
     username: root
     password: root
     driver-class-name: com.mysql.cj.jdbc.Driver
