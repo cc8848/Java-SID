@@ -19,8 +19,8 @@
 
     Integration elasticsearch and swagger
 		 
-[**SpringBoot version comparison elasticsearch list**](https://docs.spring.io/spring-data/elasticsearch/docs/3.2.3.RELEASE/reference/html/#preface.requirements?_blank) 
-  
+<a href="https://docs.spring.io/spring-data/elasticsearch/docs/3.2.3.RELEASE/reference/html/#preface.requirements" target="_blank">**SpringBoot version comparison elasticsearch list**</a>  
+
 | Spring Data Release Train | Spring Data Elasticsearch  |  Elasticsearch  | Spring Boot |
 | --- | :---: | :---: | :---: |
 | Moore | 3.2.x | 6.8.4 | 2.2.x |
