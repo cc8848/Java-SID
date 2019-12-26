@@ -1,0 +1,17 @@
+# 配置服务器
+server:
+  port: 8081
+# 配置spring
+spring:
+  application:
+    name: demo-mail
+  mail:
+    # host: smtp.exmail.qq.com  #企业
+    host: smtp.qq.com  # 个人
+    # 端口号465或587
+    port: 587
+    username: you_email@qq.com
+    # 这里QQ邮箱开通POP3/SMTP提供的授权码，如果邮箱服务商没有授权码，可以使用密码代替
+    password: pwd_or_code
+    protocol: smtp
+    default-encoding: UTF-8
