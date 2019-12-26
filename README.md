@@ -3,14 +3,30 @@
 
 #### DESC:
     
-    springboot 整合第三方框架 demo
+    Springboot integration demo project
+    Springboot version 2.1.2.RELEASE
 
 
 #### demo-mybatis-plus
 
-    整合了 mybatis-plus 和 swagger
+    Integration mybatis-plus and swagger
 
 #### demo-mail
 
-    整合了 mail 和 swagger
+    Integration mail and swagger
+
+### demo-es
+
+    Integration elasticsearch and swagger
+		 
+[**SpringBoot version comparison elasticsearch list**](https://docs.spring.io/spring-data/elasticsearch/docs/3.2.3.RELEASE/reference/html/#preface.requirements) 
+  
+| Spring Data Release Train | Spring Data Elasticsearch  |  Elasticsearch  | Spring Boot |
+| --- | :---: | :---: | :---: |
+| Moore | 3.2.x | 6.8.4 | 2.2.x |
+| Lovelace | 3.1.x | **6.2.2** | **2.1.x** |
+| Kay | 3.0.x | 5.5.0 | 2.0.x |
+| Ingalls | 2.1.x | 2.4.0 | 1.5.x |
+
+
 

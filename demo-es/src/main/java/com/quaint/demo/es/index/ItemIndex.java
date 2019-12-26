@@ -24,9 +24,9 @@ public class ItemIndex {
     private Long id;
 
     /**
-     * 标题
+     * 标题 ik 分词器
      */
-    @Field(type = FieldType.Text)
+    @Field(type = FieldType.Text, analyzer = "ik_max_word")
     private String title;
 
     /**
