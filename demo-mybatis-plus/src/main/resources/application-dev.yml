@@ -4,9 +4,9 @@ server:
 #配置spring
 spring:
   application:
-    name: demojava
+    name: demo-mybatis-plus
   datasource:
-    name: demojava
+    name: demo-db
     url: jdbc:mysql://localhost:3306/demojava?setUnicode=true&characterEncoding=UTF-8&useSSL=false
     username: root
     password: root
