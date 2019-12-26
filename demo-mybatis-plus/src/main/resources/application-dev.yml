@@ -7,7 +7,7 @@ spring:
     name: demo-mybatis-plus
   datasource:
     name: demo-db
-    url: jdbc:mysql://localhost:3306/demojava?setUnicode=true&characterEncoding=UTF-8&useSSL=false
+    url: jdbc:mysql://localhost:3306/javasid?setUnicode=true&characterEncoding=UTF-8&useSSL=false
     username: root
     password: root
     driver-class-name: com.mysql.cj.jdbc.Driver
