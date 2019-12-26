@@ -21,10 +21,10 @@
 
     <!-- 当前工程 -->
     <groupId>com.quaint</groupId>
-    <artifactId>demojava</artifactId>
+    <artifactId>java-sid</artifactId>
     <version>1.0-SNAPSHOT</version>
-    <name>quaint-demo-java</name>
-    <description>study java by demo</description>
+    <name>quaint-java-sid</name>
+    <description>Java SpringBoot Integration Demo</description>
 
     <!-- 版本配置 -->
     <properties>

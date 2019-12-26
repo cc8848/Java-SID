@@ -1,7 +1,8 @@
-# Quaint
+# Quaint ignore
 .idea
 *.iml
 *prod.yml
+logs
 
 # Compiled class file
 *.class
