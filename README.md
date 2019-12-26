@@ -1,25 +1,27 @@
 # SpringBoot Integration Demo
 
 
-#### DESC:
+### DESC:
     
     Springboot integration demo project
     Springboot version 2.1.2.RELEASE
 
 
-#### demo-mybatis-plus
+### demo-mybatis-plus
 
     Integration mybatis-plus and swagger
 
-#### demo-mail
+### demo-mail
 
     Integration mail and swagger
 
-#### demo-es
+### demo-es
 
     Integration elasticsearch and swagger
 		 
-<a href="https://docs.spring.io/spring-data/elasticsearch/docs/3.2.3.RELEASE/reference/html/#preface.requirements" target="_blank">**SpringBoot version comparison elasticsearch list**</a>  
+<a href="https://docs.spring.io/spring-data/elasticsearch/docs/3.2.3.RELEASE/reference/html/#preface.requirements" target="_blank">
+   SpringBoot version comparison elasticsearch list
+</a>
 
 | Spring Data Release Train | Spring Data Elasticsearch  |  Elasticsearch  | Spring Boot |
 | --- | :---: | :---: | :---: |
