@@ -4,13 +4,16 @@ import io.swagger.annotations.ApiModel;
 import io.swagger.annotations.ApiModelProperty;
 import lombok.Data;
 
+import java.io.Serializable;
+
 /**
+ * 分页参数封装，用于统一使用分页属性
  * @author quaint
  * @date 2019-12-27 11:23
  */
 @Data
-@ApiModel("分页基础dto")
-public class BasePage {
+@ApiModel(value = "分页基础dto", description = "用来传递处理参数,返回结果集对象的基础类")
+public class BasePageDto implements Serializable {
 
     @ApiModelProperty("开始页数")
     private Integer pageNum;
@@ -23,7 +26,13 @@ public class BasePage {
      * @return bool
      */
     public boolean check() {
-        return pageNum != null && pageSize != null;
+        if (pageNum != null && pageSize != null){
+            return true;
+        }
+        // 若检查不通过, 全部视为null
+        pageNum = null;
+        pageSize = null;
+        return false;
     }
 
     /**
