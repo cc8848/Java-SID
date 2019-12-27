@@ -1,6 +1,6 @@
 package com.quaint.demo.es.dto;
 
-import com.quaint.demo.es.dto.base.BasePage;
+import com.quaint.demo.es.dto.base.BasePageDto;
 import io.swagger.annotations.ApiModel;
 import io.swagger.annotations.ApiModelProperty;
 import lombok.Data;
@@ -25,7 +25,7 @@ public class ItemDTO {
 
     @EqualsAndHashCode(callSuper = true)
     @Data
-    public static class Param extends BasePage {
+    public static class Param extends BasePageDto {
 
         @ApiModelProperty("标题")
         private String title;
