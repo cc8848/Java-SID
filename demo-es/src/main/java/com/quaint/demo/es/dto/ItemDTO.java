@@ -1,11 +1,13 @@
 package com.quaint.demo.es.dto;
 
+import com.fasterxml.jackson.annotation.JsonFormat;
 import com.quaint.demo.es.dto.base.BasePageDto;
 import io.swagger.annotations.ApiModel;
 import io.swagger.annotations.ApiModelProperty;
 import lombok.Data;
 import lombok.EqualsAndHashCode;
 
+import java.time.LocalDateTime;
 import java.util.List;
 
 /**
@@ -54,6 +56,10 @@ public class ItemDTO {
 
         @ApiModelProperty("图片地址")
         private String images;
+
+        @ApiModelProperty("创建时间")
+        @JsonFormat(pattern = "yyyy-MM-dd HH:mm:ss")
+        private LocalDateTime createTime;
     }
 
 }

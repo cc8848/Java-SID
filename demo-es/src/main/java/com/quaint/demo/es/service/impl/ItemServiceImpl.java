@@ -77,18 +77,20 @@ public class ItemServiceImpl implements ItemService {
         ItemIndex itemIndex = new ItemIndex();
         itemIndex.setId(id);
         int titleCount = 3;
-        if (id%titleCount==0){
+        if (id.intValue()%titleCount==0){
             itemIndex.setTitle("广寒宫,饭思思,歌曲");
-        } else if (id%titleCount==1){
+        } else if (id.intValue()%titleCount==1){
             itemIndex.setTitle("你的酒馆对我打了烊,陈雪凝,歌曲");
         } else {
             itemIndex.setTitle("清明上河图,洛天依,歌曲");
         }
         itemIndex.setCategory(id%2>0?"类型一":"类型二");
-        itemIndex.setScore(9.9*id);
+        itemIndex.setScore(9.9*id.intValue());
         itemIndex.setPageViews(666L+id);
-        itemIndex.setLike(id%2>0);
+        itemIndex.setLike(id.intValue()%2>0);
         itemIndex.setImages("image/url/"+id);
+        // 控制一部分时间相同
+        itemIndex.setCreateTime(LocalDateTime.now().withHour(id.intValue()%3+10).withNano(0));
         return itemIndex;
     }
 
@@ -119,6 +121,8 @@ public class ItemServiceImpl implements ItemService {
 
             // 结果排序
             queryBuilder.withSort(SortBuilders.fieldSort("createTime").order(SortOrder.DESC));
+            // 如果 时间相同,会根据 pageViews 升序排序
+            queryBuilder.withSort(SortBuilders.fieldSort("pageViews").order(SortOrder.ASC));
 
             // 开始查询
             Page<ItemIndex> searchPage = itemRepository.search(queryBuilder.build());

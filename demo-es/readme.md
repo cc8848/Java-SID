@@ -9,6 +9,11 @@
     https://github.com/medcl/elasticsearch-analysis-ik/releases/tag/v6.2.2
     解压所有文件复制到elasticsearch的plugins目录下(可以在plugins下新建ik文件夹,放在里面方便更多插件整理)
 
+### ES查询API
+
+    https://docs.spring.io/spring-data/elasticsearch/docs/3.0.8.RELEASE/reference/html/#repositories
+
+
 ### ES常见Url
 
 
