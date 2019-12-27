@@ -5,12 +5,22 @@ import com.quaint.demo.es.index.ItemIndex;
 import com.quaint.demo.es.repository.ItemRepository;
 import com.quaint.demo.es.service.ItemService;
 import lombok.extern.slf4j.Slf4j;
+import org.elasticsearch.index.query.BoolQueryBuilder;
+import org.elasticsearch.index.query.QueryBuilders;
+import org.elasticsearch.search.sort.SortBuilders;
+import org.elasticsearch.search.sort.SortOrder;
 import org.springframework.beans.BeanUtils;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.data.domain.Page;
+import org.springframework.data.domain.PageRequest;
 import org.springframework.data.elasticsearch.core.ElasticsearchTemplate;
+import org.springframework.data.elasticsearch.core.query.NativeSearchQueryBuilder;
 import org.springframework.stereotype.Service;
+import org.springframework.util.CollectionUtils;
 
 import java.time.LocalDateTime;
+import java.util.List;
+import java.util.stream.Collectors;
 
 /**
  * @author qi cong
@@ -82,4 +92,49 @@ public class ItemServiceImpl implements ItemService {
         return itemIndex;
     }
 
+    @Override
+    public ItemDTO searchItemList(ItemDTO.Param param) {
+
+        if (param != null) {
+
+            NativeSearchQueryBuilder queryBuilder = new NativeSearchQueryBuilder();
+
+            // 增加搜索条件
+            BoolQueryBuilder boolQuery = new BoolQueryBuilder();
+            if (param.getTitle()!=null) {
+                boolQuery.should(QueryBuilders.matchQuery("title",param.getTitle()));
+            }
+            if (!CollectionUtils.isEmpty(param.getCategory())) {
+                param.getCategory().forEach(category -> boolQuery.should(QueryBuilders.matchQuery("category",category)));
+            }
+            queryBuilder.withQuery(boolQuery);
+
+            // 处理分页
+            if (param.esStandardization()){
+                queryBuilder.withPageable(PageRequest.of(param.getPageNum(),param.getPageSize()));
+            } else {
+                // 如果没有传分页参数,则为查询全部,es并不推荐直接查询全部,这里暂时插叙1000条
+                queryBuilder.withPageable(PageRequest.of(0,1000));
+            }
+
+            // 结果排序
+            queryBuilder.withSort(SortBuilders.fieldSort("createTime").order(SortOrder.DESC));
+
+            // 开始查询
+            Page<ItemIndex> searchPage = itemRepository.search(queryBuilder.build());
+
+            // 封装dto
+            ItemDTO respDto = new ItemDTO();
+            respDto.setTotalCount(searchPage.getTotalElements());
+            List<ItemDTO.Result> resultList = searchPage.getContent().stream().map(itemIndex -> {
+                ItemDTO.Result result = new ItemDTO.Result();
+                BeanUtils.copyProperties(itemIndex, result);
+                return result;
+            }).collect(Collectors.toList());
+            respDto.setItemList(resultList);
+
+            return respDto;
+        }
+        return null;
+    }
 }

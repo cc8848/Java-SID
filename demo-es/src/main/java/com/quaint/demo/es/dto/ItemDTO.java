@@ -1,10 +1,12 @@
 package com.quaint.demo.es.dto;
 
+import com.quaint.demo.es.dto.base.BasePage;
 import io.swagger.annotations.ApiModel;
 import io.swagger.annotations.ApiModelProperty;
 import lombok.Data;
+import lombok.EqualsAndHashCode;
 
-import java.time.LocalDateTime;
+import java.util.List;
 
 /**
  * @author qi cong
@@ -14,30 +16,44 @@ import java.time.LocalDateTime;
 @Data
 public class ItemDTO {
 
-    private Long id;
+    @ApiModelProperty("item列表")
+    private List<Result> itemList;
 
-    @ApiModelProperty("标题")
-    private String title;
+    @ApiModelProperty("item总数")
+    private Long totalCount;
 
-    /**
-     * 分类
-     */
-    private String category;
 
-    /**
-     * 评分
-     */
-    private Double score;
+    @EqualsAndHashCode(callSuper = true)
+    @Data
+    public static class Param extends BasePage {
 
-    /**
-     * 浏览量
-     */
-    private Long pageViews;
+        @ApiModelProperty("标题")
+        private String title;
 
-    /**
-     * 图片地址
-     */
-    private String images;
+        @ApiModelProperty("分类,逗号分隔")
+        private List<String> category;
 
+    }
+
+    @Data
+    public static class Result{
+
+        private Long id;
+
+        @ApiModelProperty("标题")
+        private String title;
+
+        @ApiModelProperty("分类")
+        private String category;
+
+        @ApiModelProperty("评分")
+        private Double score;
+
+        @ApiModelProperty("浏览量")
+        private Long pageViews;
+
+        @ApiModelProperty("图片地址")
+        private String images;
+    }
 
 }

@@ -1,6 +1,9 @@
 package com.quaint.demo.es.service;
 
 import com.quaint.demo.es.dto.ItemDTO;
+import com.quaint.demo.es.index.ItemIndex;
+
+import java.util.List;
 
 /**
  * @author qi cong
@@ -26,6 +29,13 @@ public interface ItemService {
      * @return bool
      */
     Boolean initIndexData();
+
+    /**
+     * 通过标题搜索内容
+     * @param param param
+     * @return list
+     */
+    ItemDTO searchItemList(ItemDTO.Param param);
 
 
 }
