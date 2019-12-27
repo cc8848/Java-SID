@@ -33,5 +33,10 @@ public class ItemDemoSpi {
         return itemService.initIndexData();
     }
 
+    @PostMapping("/search/item/list")
+    public ItemDTO searchItemList(@RequestBody ItemDTO.Param param){
+        return itemService.searchItemList(param);
+    }
+
 
 }
