@@ -1,11 +1,10 @@
 package com.quaint.demo.es.spi;
 
+import com.quaint.demo.es.dto.ItemDTO;
 import com.quaint.demo.es.service.ItemService;
 import io.swagger.annotations.Api;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
 
 /**
  * @author qi cong
@@ -25,8 +24,13 @@ public class ItemDemoSpi {
     }
 
     @PostMapping("/add/document")
-    public Boolean esRepositoryAddDocument(){
-        return itemService.esRepositoryAddDocument();
+    public Boolean esRepositoryAddDocument(@RequestBody ItemDTO dto) {
+        return itemService.esRepositoryAddDocument(dto);
+    }
+
+    @GetMapping("/init/data")
+    public Boolean esInitData(){
+        return itemService.initIndexData();
     }
 
 

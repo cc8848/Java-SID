@@ -26,13 +26,13 @@ public class ItemIndex {
     /**
      * 标题 ik 分词器
      */
-    @Field(type = FieldType.Text, analyzer = "ik_max_word")
+    @Field(type = FieldType.Text, analyzer = "ik_max_word", searchAnalyzer = "ik_smart")
     private String title;
 
     /**
      * 分类
      */
-    @Field(type = FieldType.Auto)
+    @Field(type = FieldType.Text)
     private String category;
 
     /**

@@ -1,9 +1,11 @@
 package com.quaint.demo.es.service.impl;
 
+import com.quaint.demo.es.dto.ItemDTO;
 import com.quaint.demo.es.index.ItemIndex;
 import com.quaint.demo.es.repository.ItemRepository;
 import com.quaint.demo.es.service.ItemService;
 import lombok.extern.slf4j.Slf4j;
+import org.springframework.beans.BeanUtils;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.elasticsearch.core.ElasticsearchTemplate;
 import org.springframework.stereotype.Service;
@@ -34,20 +36,50 @@ public class ItemServiceImpl implements ItemService {
     }
 
     @Override
-    public Boolean esRepositoryAddDocument() {
+    public Boolean esRepositoryAddDocument(ItemDTO dto) {
 
         ItemIndex itemIndex = new ItemIndex();
-        itemIndex.setId(1L);
-        itemIndex.setTitle("this is title");
-        itemIndex.setCategory("typeOne");
-        itemIndex.setScore(9.9);
-        itemIndex.setPageViews(666L);
-        itemIndex.setLike(true);
-        itemIndex.setImages("image/url");
+        BeanUtils.copyProperties(dto,itemIndex);
+        itemIndex.setLike(false);
         itemIndex.setCreateTime(LocalDateTime.now());
 
         log.info("save : [{}]",itemIndex.toString());
         itemRepository.save(itemIndex);
         return true;
     }
+
+    @Override
+    public Boolean initIndexData() {
+        ItemIndex itemIndex;
+        Long count = 20L;
+        for (Long i = 0L; i < count; i++) {
+            itemIndex = createItemIndex(i);
+            itemRepository.save(itemIndex);
+        }
+        return true;
+    }
+
+    /**
+     * 创建数据
+     * @return
+     */
+    private ItemIndex createItemIndex(Long id){
+        ItemIndex itemIndex = new ItemIndex();
+        itemIndex.setId(id);
+        int titleCount = 3;
+        if (id%titleCount==0){
+            itemIndex.setTitle("广寒宫,饭思思,歌曲");
+        } else if (id%titleCount==1){
+            itemIndex.setTitle("你的酒馆对我打了烊,陈雪凝,歌曲");
+        } else {
+            itemIndex.setTitle("清明上河图,洛天依,歌曲");
+        }
+        itemIndex.setCategory(id%2>0?"类型一":"类型二");
+        itemIndex.setScore(9.9*id);
+        itemIndex.setPageViews(666L+id);
+        itemIndex.setLike(id%2>0);
+        itemIndex.setImages("image/url/"+id);
+        return itemIndex;
+    }
+
 }

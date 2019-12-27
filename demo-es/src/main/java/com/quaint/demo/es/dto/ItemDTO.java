@@ -1,21 +1,22 @@
-package com.quaint.demo.es.po;
+package com.quaint.demo.es.dto;
 
+import io.swagger.annotations.ApiModel;
+import io.swagger.annotations.ApiModelProperty;
 import lombok.Data;
 
 import java.time.LocalDateTime;
 
 /**
  * @author qi cong
- * @date 2019-12-26 11:53
+ * @date 2019-12-26 17:43
  */
+@ApiModel("ItemDto")
 @Data
-public class Item {
+public class ItemDTO {
 
     private Long id;
 
-    /**
-     * 标题
-     */
+    @ApiModelProperty("标题")
     private String title;
 
     /**
@@ -38,9 +39,5 @@ public class Item {
      */
     private String images;
 
-    /**
-     * 创建日期
-     */
-    private LocalDateTime createTime;
 
 }
