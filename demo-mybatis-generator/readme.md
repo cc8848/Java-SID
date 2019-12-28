@@ -29,8 +29,6 @@
         </plugins>
     </build>
 
-    
-
 **根据自己的maven仓库地址修改resources 下的 generator 下的配置文件**
 
     <!-- 数据库驱动:选择你的本地硬盘上面的数据库驱动包-->
