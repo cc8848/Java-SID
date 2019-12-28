@@ -7,6 +7,11 @@ import com.quaint.demo.es.service.ItemService;
 import lombok.extern.slf4j.Slf4j;
 import org.elasticsearch.index.query.BoolQueryBuilder;
 import org.elasticsearch.index.query.QueryBuilders;
+import org.elasticsearch.script.Script;
+import org.elasticsearch.search.aggregations.AggregationBuilders;
+import org.elasticsearch.search.aggregations.bucket.terms.TermsAggregationBuilder;
+import org.elasticsearch.search.aggregations.metrics.cardinality.CardinalityAggregationBuilder;
+import org.elasticsearch.search.sort.ScriptSortBuilder;
 import org.elasticsearch.search.sort.SortBuilders;
 import org.elasticsearch.search.sort.SortOrder;
 import org.springframework.beans.BeanUtils;
@@ -109,6 +114,10 @@ public class ItemServiceImpl implements ItemService {
             if (!CollectionUtils.isEmpty(param.getCategory())) {
                 param.getCategory().forEach(category -> boolQuery.should(QueryBuilders.matchQuery("category",category)));
             }
+
+            // 增加过滤条件 筛选  7<= id < 15 的数据
+            boolQuery.filter(QueryBuilders.rangeQuery("id").gte(7).lt(15));
+
             queryBuilder.withQuery(boolQuery);
 
             // 处理分页
@@ -123,6 +132,10 @@ public class ItemServiceImpl implements ItemService {
             queryBuilder.withSort(SortBuilders.fieldSort("createTime").order(SortOrder.DESC));
             // 如果 时间相同,会根据 pageViews 升序排序
             queryBuilder.withSort(SortBuilders.fieldSort("pageViews").order(SortOrder.ASC));
+
+            // 随机排序
+//            queryBuilder.withSort(SortBuilders.scriptSort(
+//                    new Script("Math.random()"), ScriptSortBuilder.ScriptSortType.NUMBER).order(SortOrder.DESC));
 
             // 开始查询
             Page<ItemIndex> searchPage = itemRepository.search(queryBuilder.build());
