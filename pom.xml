@@ -8,6 +8,7 @@
         <module>demo-es</module>
         <module>demo-mail</module>
         <module>demo-mybatis-plus</module>
+        <module>demo-mybatis-generator</module>
     </modules>
 
     <!-- 父工程 -->
@@ -23,7 +24,7 @@
     <groupId>com.quaint</groupId>
     <artifactId>java-sid</artifactId>
     <version>1.0-SNAPSHOT</version>
-    <name>quaint-java-sid</name>
+    <name>java-sid</name>
     <description>Java SpringBoot Integration Demo</description>
 
     <!-- 版本配置 -->

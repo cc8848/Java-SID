@@ -1,0 +1,45 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE generatorConfiguration
+        PUBLIC "-//mybatis.org//DTD MyBatis Generator Configuration 1.0//EN"
+        "http://mybatis.org/dtd/mybatis-generator-config_1_0.dtd">
+<generatorConfiguration>
+    <!-- //TODO 数据库驱动:选择你的本地硬盘上面的数据库驱动包  mac 路径为/分隔 -->
+    <classPathEntry  location="/Users/quaint/tools/.m2/repository/mysql/mysql-connector-java/5.1.6/mysql-connector-java-5.1.6.jar"/>
+    <context id="MysqlTables"  targetRuntime="MyBatis3">
+        <commentGenerator>
+            <property name="suppressDate" value="true"/>
+            <!-- 是否去除自动生成的注释 true：是 ： false:否 -->
+            <property name="suppressAllComments" value="true"/>
+        </commentGenerator>
+        <!--//TODO 数据库连接驱动类,URL，用户名、密码   -->
+        <jdbcConnection driverClass="com.mysql.jdbc.Driver" connectionURL="jdbc:mysql://localhost:3306/javasid" userId="root" password="root">
+        </jdbcConnection>
+        <javaTypeResolver>
+            <property name="forceBigDecimals" value="false"/>
+        </javaTypeResolver>
+        <!-- //TODO 生成(实体)模型的包名和位置(临时位置后期修改表结构防止覆盖之前的代码) mac 路径为/分隔 -->
+        <javaModelGenerator targetPackage="com.quaint.demo.generator.po" targetProject="./src/main/java">
+            <property name="enableSubPackages" value="true"/>
+            <property name="trimStrings" value="true"/>
+        </javaModelGenerator>
+        <!-- //TODO 生成XML映射文件的包名和位置(注意重复生成会覆盖) mac 路径为/分隔 -->
+        <sqlMapGenerator targetPackage="resources.mapper" targetProject="./src/main">
+            <property name="enableSubPackages" value="true"/>
+        </sqlMapGenerator>
+        <!-- //TODO 生成DAO接口的包名和位置(注意重复生成会覆盖) mac 路径为/分隔 -->
+        <javaClientGenerator type="XMLMAPPER" targetPackage="com.quaint.demo.generator.dao" targetProject="./src/main/java">
+            <property name="enableSubPackages" value="true"/>
+        </javaClientGenerator>
+        <!-- //TODO 要生成的表 tableName是数据库中的表名或视图名 domainObjectName是实体类名-->
+        <table tableName="demo_user" domainObjectName="DemoUserPO" enableCountByExample="false" enableUpdateByExample="false" enableDeleteByExample="false" enableSelectByExample="false" selectByExampleQueryId="false"></table>
+        <!--
+        <table tableName="quaint_stay_message" domainObjectName="StayMessage" enableCountByExample="false" enableUpdateByExample="false" enableDeleteByExample="false" enableSelectByExample="false" selectByExampleQueryId="false"></table>
+        <table tableName="quaint_mail_code" domainObjectName="MailCode" enableCountByExample="false" enableUpdateByExample="false" enableDeleteByExample="false" enableSelectByExample="false" selectByExampleQueryId="false"></table>
+        <table tableName="quaint_user" domainObjectName="Users" enableCountByExample="false" enableUpdateByExample="false" enableDeleteByExample="false" enableSelectByExample="false" selectByExampleQueryId="false"></table>
+        <table tableName="quaint_user_role" domainObjectName="UsersLinkRole" enableCountByExample="false" enableUpdateByExample="false" enableDeleteByExample="false" enableSelectByExample="false" selectByExampleQueryId="false"></table>
+        <table tableName="quaint_role" domainObjectName="Role" enableCountByExample="false" enableUpdateByExample="false" enableDeleteByExample="false" enableSelectByExample="false" selectByExampleQueryId="false"></table>
+        <table tableName="quaint_role_power" domainObjectName="RoleLinkPower" enableCountByExample="false" enableUpdateByExample="false" enableDeleteByExample="false" enableSelectByExample="false" selectByExampleQueryId="false"></table>
+        <table tableName="quaint_power" domainObjectName="Power" enableCountByExample="false" enableUpdateByExample="false" enableDeleteByExample="false" enableSelectByExample="false" selectByExampleQueryId="false"></table>
+        -->
+    </context>
+</generatorConfiguration>
