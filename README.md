@@ -1,25 +1,31 @@
 # SpringBoot Integration Demo
 
 
+
 ### DESC:
     
     Springboot integration demo project
     Springboot version 2.1.2.RELEASE
 
+---
 
 ### demo-mybatis-plus
 
     Integration mybatis-plus and swagger
 
+---
+
 ### demo-mail
 
     Integration mail and swagger
+    
 
-### demo-es
+---
+
+### demo-elastic-search
 
     Integration elasticsearch and swagger
 		 
-
 **SpringBoot version comparison elasticsearch list**
 
 | Spring Data Release Train | Spring Data Elasticsearch  |  Elasticsearch  | Spring Boot |
@@ -29,5 +35,9 @@
 | Kay | 3.0.x | 5.5.0 | 2.0.x |
 | Ingalls | 2.1.x | 2.4.0 | 1.5.x |
 
+---
 
+### demo-mybatis-generator
+
+    Integration Mybatis Reverse Engineering
 
