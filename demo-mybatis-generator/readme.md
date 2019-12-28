@@ -3,9 +3,8 @@
 
 使用方法
 
-- **先留意自己的maven仓库-> pom文件中的内容**
+**先留意自己的maven仓库-> pom文件中的内容**
 
-    
     <dependencies>
         <dependency>
             <groupId>mysql</groupId>
@@ -14,7 +13,6 @@
             <scope>runtime</scope>
         </dependency>
     </dependencies>
-    
     <build>
         <plugins>
             <!-- mybatis generator 自动生成代码插件 -->
@@ -28,13 +26,12 @@
                     <verbose>true</verbose>
                 </configuration>
             </plugin>
-
         </plugins>
     </build>
+
     
 
-- **根据自己的maven仓库地址修改resources 下的 generator 下的配置文件**
-
+**根据自己的maven仓库地址修改resources 下的 generator 下的配置文件**
 
     <!-- 数据库驱动:选择你的本地硬盘上面的数据库驱动包-->
     <classPathEntry  location="E:\.m2\repository\mysql\mysql-connector-java\5.1.6\mysql-connector-java-5.1.6.jar"/>
@@ -43,15 +40,10 @@
     <jdbcConnection driverClass="com.mysql.jdbc.Driver" connectionURL="jdbc:mysql://localhost:3306/javasid" userId="root" password="root">
     
     等等 标记//TODO 标签的地方都需要查看是否修改
-    
 
-- **在添加一个maven运行代码**
-
+**在添加一个maven运行代码**
 
     name: generator
-    
     working directory: 选择本项目
-    
     command line: mybatis-generator:generate -e
-    
     保存,运行即可
