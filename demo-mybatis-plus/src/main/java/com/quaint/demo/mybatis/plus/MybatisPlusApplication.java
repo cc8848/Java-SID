@@ -1,5 +1,6 @@
 package com.quaint.demo.mybatis.plus;
 
+import org.mybatis.spring.annotation.MapperScan;
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
 
@@ -8,6 +9,7 @@ import org.springframework.boot.autoconfigure.SpringBootApplication;
  * @date 2019-12-24 15:09
  */
 @SpringBootApplication
+@MapperScan(basePackages = "com.quaint.demo.mybatis.plus.mapper")
 public class MybatisPlusApplication {
 
     public static void main(String[] args) {

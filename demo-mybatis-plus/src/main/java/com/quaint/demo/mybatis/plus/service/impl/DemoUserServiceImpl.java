@@ -1,6 +1,6 @@
 package com.quaint.demo.mybatis.plus.service.impl;
 
-import com.quaint.demo.mybatis.plus.dao.DemoUserMapper;
+import com.quaint.demo.mybatis.plus.mapper.DemoUserMapper;
 import com.quaint.demo.mybatis.plus.dto.DemoUserDTO;
 import com.quaint.demo.mybatis.plus.po.DemoUserPO;
 import com.quaint.demo.mybatis.plus.service.DemoUserService;

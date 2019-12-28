@@ -13,7 +13,7 @@ spring:
     driver-class-name: com.mysql.cj.jdbc.Driver
     type: com.alibaba.druid.pool.DruidDataSource
 mybatis-plus:
-  mapper-locations: classpath:/mapper/*/*Mapper.xml
+  mapper-locations: classpath:/mapper/*Mapper.xml
   type-aliases-package: com.quaint.demo.mybatis.plus.po
   configuration:
     # 驼峰下划线转换
