@@ -43,7 +43,7 @@ public class ItemServiceImpl implements ItemService {
 
 
     @Override
-    public Boolean esTemplateAddIndex() {
+    public Boolean addIndex() {
 
         // 可以根据类的信息自动生成，也可以手动指定indexName和Settings  elasticsearchTemplate.putMapping;
         elasticsearchTemplate.createIndex(ItemIndex.class);
@@ -51,7 +51,7 @@ public class ItemServiceImpl implements ItemService {
     }
 
     @Override
-    public Boolean esRepositoryAddDocument(ItemDTO dto) {
+    public Boolean addDocument(ItemDTO dto) {
 
         ItemIndex itemIndex = new ItemIndex();
         BeanUtils.copyProperties(dto,itemIndex);
@@ -153,5 +153,11 @@ public class ItemServiceImpl implements ItemService {
             return respDto;
         }
         return null;
+    }
+
+    @Override
+    public Boolean delDocumentById(Long id) {
+        itemRepository.deleteById(id);
+        return true;
     }
 }

@@ -1,6 +1,7 @@
 package com.quaint.demo.es.spi;
 
 import com.quaint.demo.es.dto.ItemDTO;
+import com.quaint.demo.es.dto.base.BaseIdDto;
 import com.quaint.demo.es.service.ItemService;
 import io.swagger.annotations.Api;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -19,13 +20,13 @@ public class ItemDemoSpi {
     ItemService itemService;
 
     @PostMapping("/add/index")
-    public Boolean esTemplateAddIndex(){
-        return itemService.esTemplateAddIndex();
+    public Boolean addIndex(){
+        return itemService.addIndex();
     }
 
     @PostMapping("/add/document")
-    public Boolean esRepositoryAddDocument(@RequestBody ItemDTO dto) {
-        return itemService.esRepositoryAddDocument(dto);
+    public Boolean addDocument(@RequestBody ItemDTO dto) {
+        return itemService.addDocument(dto);
     }
 
     @GetMapping("/init/data")
@@ -36,6 +37,12 @@ public class ItemDemoSpi {
     @PostMapping("/search/item/list")
     public ItemDTO searchItemList(@RequestBody ItemDTO.Param param){
         return itemService.searchItemList(param);
+    }
+
+
+    @DeleteMapping("/del/document")
+    public Boolean delDocumentById(@RequestBody BaseIdDto idDto){
+        return itemService.delDocumentById(idDto.getId());
     }
 
 
