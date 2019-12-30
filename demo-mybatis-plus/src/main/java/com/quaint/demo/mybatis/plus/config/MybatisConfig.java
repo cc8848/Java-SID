@@ -14,7 +14,7 @@ public class MybatisConfig {
 
     @Bean
     public ISqlInjector sqlInjector() {
-        // 逻辑删除相关
+        // 逻辑删除相关, 配置逻辑删除后, mybatis 查询时 会自动拼接 valid = 1
         return new LogicSqlInjector();
     }
 
