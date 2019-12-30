@@ -53,3 +53,8 @@
         # 驼峰下划线转换
         map-underscore-to-camel-case: true
         log-impl: org.apache.ibatis.logging.stdout.StdOutImpl
+        
+        
+**代码生成器官网配置**
+
+    https://mp.baomidou.com/config/generator-config.html

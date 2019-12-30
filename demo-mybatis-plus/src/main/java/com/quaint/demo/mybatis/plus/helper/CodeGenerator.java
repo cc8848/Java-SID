@@ -1,4 +1,4 @@
-package com.quaint.demo.mybatis.plus.config;
+package com.quaint.demo.mybatis.plus.helper;
 
 import com.baomidou.mybatisplus.core.exceptions.MybatisPlusException;
 import com.baomidou.mybatisplus.generator.AutoGenerator;
@@ -45,11 +45,14 @@ public class CodeGenerator {
         // 全局配置
         GlobalConfig gc = new GlobalConfig();
         String projectPath = System.getProperty("user.dir");
-        gc.setOutputDir(projectPath + "/src/main/java");
+
+        // 注意:不加 /demo-mybatis-plus ,会生成到 父模块中
+        gc.setOutputDir(projectPath + "/demo-mybatis-plus/src/main/java");
         // todo 修改1 -->  set author
         gc.setAuthor("quaint");
+        // 是否打开目录
         gc.setOpen(false);
-        // gc.setSwagger2(true); 实体属性 Swagger2 注解
+        gc.setEntityName("%sPO");
         generator.setGlobalConfig(gc);
 
         // todo 修改2 --> 数据源配置
@@ -62,9 +65,10 @@ public class CodeGenerator {
 
         // todo 修改3 --> 包配置
         PackageConfig pc = new PackageConfig();
-        pc.setParent("com.quaint.demo.mybatis.plus.code")
+        pc.setParent("com.quaint.demo.mybatis.plus")
                 .setEntity("po")
-                .setMapper("mapper");
+                .setMapper("mapper")
+                .setController("controller");
         generator.setPackageInfo(pc);
 
         // 自定义配置
@@ -88,7 +92,8 @@ public class CodeGenerator {
             @Override
             public String outputFile(TableInfo tableInfo) {
                 // 自定义输出文件名 ， 如果你 Entity 设置了前后缀、此处注意 xml 的名称会跟着发生变化！！
-                return projectPath + "/src/main/resources/mapper/code" + "/" + tableInfo.getEntityName() + "Mapper.xml";
+                // 注意:不加 /demo-mybatis-plus ,会生成到 父模块中
+                return projectPath + "/demo-mybatis-plus/src/main/resources/mapper/" + tableInfo.getEntityName() + "Mapper.xml";
             }
         });
 
@@ -110,7 +115,6 @@ public class CodeGenerator {
 
         strategy.setInclude(scanner("表名，多个英文逗号分割").split(","));
         strategy.setControllerMappingHyphenStyle(true);
-        strategy.setTablePrefix(pc.getModuleName() + "_");
         generator.setStrategy(strategy);
         generator.setTemplateEngine(new FreemarkerTemplateEngine());
         generator.execute();
