@@ -1,9 +1,6 @@
 package com.quaint.demo.mybatis.plus.po;
 
-import com.baomidou.mybatisplus.annotation.IdType;
-import com.baomidou.mybatisplus.annotation.TableField;
-import com.baomidou.mybatisplus.annotation.TableId;
-import com.baomidou.mybatisplus.annotation.TableName;
+import com.baomidou.mybatisplus.annotation.*;
 
 import java.time.LocalDateTime;
 
@@ -25,6 +22,17 @@ public class DemoUserPO {
 
     @TableField("update_time")
     private LocalDateTime updateTime;
+
+    @TableLogic
+    private Boolean valid;
+
+    public Boolean getValid() {
+        return valid;
+    }
+
+    public void setValid(Boolean valid) {
+        this.valid = valid;
+    }
 
     public Integer getId() {
         return id;

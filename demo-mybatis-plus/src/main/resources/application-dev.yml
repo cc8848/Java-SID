@@ -19,6 +19,11 @@ mybatis-plus:
     # 驼峰下划线转换
     map-underscore-to-camel-case: true
     log-impl: org.apache.ibatis.logging.stdout.StdOutImpl
+  # 配置逻辑删除
+  global-config:
+    db-config:
+      logic-delete-value: 0
+      logic-not-delete-value: 1
 #日志配置
 #日志输出级别 TRACE > DEBUG > INFO > WARN > ERROR
 logging:
