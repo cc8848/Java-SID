@@ -49,4 +49,11 @@ public class DemoUserServiceImpl implements DemoUserService {
         BeanUtils.copyProperties(po,respDto);
         return respDto;
     }
+
+    @Override
+    public boolean delUserInfo(Integer id){
+        // PO valid字段上增加 @TableLogic 注解后 会 执行update 方法进行逻辑删除
+        return demoUserMapper.deleteById(id)>0;
+    }
+
 }

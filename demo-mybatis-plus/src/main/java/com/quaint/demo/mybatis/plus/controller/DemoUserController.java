@@ -30,5 +30,10 @@ public class DemoUserController {
         return new BaseResponse<>(demoUserService.addUserInfo(req));
     }
 
+    @DeleteMapping("/user")
+    BaseResponse<Boolean> delUserInfo(ReqById req){
+        return new BaseResponse<>(demoUserService.delUserInfo(req.getId()));
+    }
+
 
 }

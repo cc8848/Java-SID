@@ -23,4 +23,12 @@ public interface DemoUserService {
      */
     DemoUserDTO addUserInfo(DemoUserDTO reqDto);
 
+
+    /**
+     * 逻辑删除用户信息
+     * @param id id
+     * @return boolean
+     */
+    boolean delUserInfo(Integer id);
+
 }
