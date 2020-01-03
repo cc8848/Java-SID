@@ -8,11 +8,11 @@ import org.springframework.boot.autoconfigure.SpringBootApplication;
  * @date 2019-12-24 14:48
  */
 @SpringBootApplication
-public class EsApplication {
+public class ElasticSearchApplication {
 
     public static void main(String[] args) {
 
-        SpringApplication.run(EsApplication.class,args);
+        SpringApplication.run(ElasticSearchApplication.class,args);
 
     }
 

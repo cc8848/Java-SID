@@ -1,17 +1,14 @@
 package com.quaint.demo.es.service.impl;
 
 import com.quaint.demo.es.dto.ItemDTO;
+import com.quaint.demo.es.handler.impl.ItemHandler;
 import com.quaint.demo.es.index.ItemIndex;
+import com.quaint.demo.es.mapper.ItemMapper;
 import com.quaint.demo.es.repository.ItemRepository;
 import com.quaint.demo.es.service.ItemService;
 import lombok.extern.slf4j.Slf4j;
 import org.elasticsearch.index.query.BoolQueryBuilder;
 import org.elasticsearch.index.query.QueryBuilders;
-import org.elasticsearch.script.Script;
-import org.elasticsearch.search.aggregations.AggregationBuilders;
-import org.elasticsearch.search.aggregations.bucket.terms.TermsAggregationBuilder;
-import org.elasticsearch.search.aggregations.metrics.cardinality.CardinalityAggregationBuilder;
-import org.elasticsearch.search.sort.ScriptSortBuilder;
 import org.elasticsearch.search.sort.SortBuilders;
 import org.elasticsearch.search.sort.SortOrder;
 import org.springframework.beans.BeanUtils;
@@ -41,12 +38,24 @@ public class ItemServiceImpl implements ItemService {
     @Autowired
     ItemRepository itemRepository;
 
+    @Autowired
+    ItemMapper itemMapper;
+
+    @Autowired
+    ItemHandler itemHandler;
+
 
     @Override
     public Boolean addIndex() {
-
-        // 可以根据类的信息自动生成，也可以手动指定indexName和Settings  elasticsearchTemplate.putMapping;
+        // 可以根据类的信息在项目启动时会自动生成，也可以手动指定indexName和Settings -->  elasticsearchTemplate.putMapping;
+        // 一版情况下使用不到
         elasticsearchTemplate.createIndex(ItemIndex.class);
+        return true;
+    }
+
+    @Override
+    public Boolean initIndexData() {
+        itemHandler.refresh();
         return true;
     }
 
@@ -64,39 +73,9 @@ public class ItemServiceImpl implements ItemService {
     }
 
     @Override
-    public Boolean initIndexData() {
-        ItemIndex itemIndex;
-        Long count = 20L;
-        for (Long i = 0L; i < count; i++) {
-            itemIndex = createItemIndex(i);
-            itemRepository.save(itemIndex);
-        }
+    public Boolean delDocumentById(Long id) {
+        itemRepository.deleteById(id);
         return true;
-    }
-
-    /**
-     * 创建数据
-     * @return
-     */
-    private ItemIndex createItemIndex(Long id){
-        ItemIndex itemIndex = new ItemIndex();
-        itemIndex.setId(id);
-        int titleCount = 3;
-        if (id.intValue()%titleCount==0){
-            itemIndex.setTitle("广寒宫,饭思思,歌曲");
-        } else if (id.intValue()%titleCount==1){
-            itemIndex.setTitle("你的酒馆对我打了烊,陈雪凝,歌曲");
-        } else {
-            itemIndex.setTitle("清明上河图,洛天依,歌曲");
-        }
-        itemIndex.setCategory(id%2>0?"类型一":"类型二");
-        itemIndex.setScore(9.9*id.intValue());
-        itemIndex.setPageViews(666L+id);
-        itemIndex.setLike(id.intValue()%2>0);
-        itemIndex.setImages("image/url/"+id);
-        // 控制一部分时间相同
-        itemIndex.setCreateTime(LocalDateTime.now().withHour(id.intValue()%3+10).withNano(0));
-        return itemIndex;
     }
 
     @Override
@@ -155,9 +134,5 @@ public class ItemServiceImpl implements ItemService {
         return null;
     }
 
-    @Override
-    public Boolean delDocumentById(Long id) {
-        itemRepository.deleteById(id);
-        return true;
-    }
+
 }

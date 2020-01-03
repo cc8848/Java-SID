@@ -30,7 +30,7 @@ public class ItemIndex {
     private String title;
 
     /**
-     * 分类
+     * 分类 逗号分隔
      */
     @Field(type = FieldType.Text)
     private String category;

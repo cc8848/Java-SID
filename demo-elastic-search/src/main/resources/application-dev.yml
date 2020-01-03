@@ -5,7 +5,24 @@ server:
 spring:
   application:
     name: demo-es
+  # 配置 es
   data:
     elasticsearch:
       cluster-name: my-application
       cluster-nodes: 127.0.0.1:9300
+  # 数据源
+  datasource:
+    name: demo-db
+    url: jdbc:mysql://localhost:3306/javasid?setUnicode=true&characterEncoding=UTF-8&useSSL=false
+    username: root
+    password: root
+    driver-class-name: com.mysql.cj.jdbc.Driver
+    type: com.alibaba.druid.pool.DruidDataSource
+# mybatis-plus
+mybatis-plus:
+  mapper-locations: classpath:/mapper/*Mapper.xml
+  type-aliases-package: com.quaint.demo.mybatis.plus.po
+  configuration:
+    # 驼峰下划线转换
+    map-underscore-to-camel-case: true
+    log-impl: org.apache.ibatis.logging.stdout.StdOutImpl
