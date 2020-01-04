@@ -16,7 +16,7 @@ import java.util.List;
  */
 @ApiModel("ItemDto")
 @Data
-public class ItemDTO {
+public class DemoTestDto {
 
     @ApiModelProperty("item列表")
     private List<Result> itemList;

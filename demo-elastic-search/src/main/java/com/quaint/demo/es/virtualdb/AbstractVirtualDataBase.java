@@ -1,4 +1,4 @@
-package com.quaint.demo.es.database;
+package com.quaint.demo.es.virtualdb;
 
 import org.springframework.util.CollectionUtils;
 

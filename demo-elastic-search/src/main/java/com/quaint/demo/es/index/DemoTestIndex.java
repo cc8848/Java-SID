@@ -13,9 +13,9 @@ import java.time.LocalDateTime;
  * @author qi cong
  * @date 2019-12-26 11:15
  */
-@Document(indexName = "demo_item")
+@Document(indexName = "demo_test")
 @Data
-public class ItemIndex {
+public class DemoTestIndex {
 
     /**
      * 主键

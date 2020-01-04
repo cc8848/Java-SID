@@ -16,7 +16,7 @@ import java.util.List;
  * @date 2020-01-03 22:57
  */
 @Component
-public class DataChangeEventDispatcher implements EventCommitedListener<DataChangeEvent>{
+public class DataChangeEventDispatcher implements EventCommitAfterListener<DataChangeEvent> {
 
     /**
      * 注入所有实现 IndexDataHandler 接口的类

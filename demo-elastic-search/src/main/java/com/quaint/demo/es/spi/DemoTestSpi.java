@@ -1,8 +1,8 @@
 package com.quaint.demo.es.spi;
 
-import com.quaint.demo.es.dto.ItemDTO;
+import com.quaint.demo.es.dto.DemoTestDto;
 import com.quaint.demo.es.dto.base.BaseIdDto;
-import com.quaint.demo.es.service.ItemService;
+import com.quaint.demo.es.service.DemoTestService;
 import io.swagger.annotations.Api;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
@@ -13,36 +13,36 @@ import org.springframework.web.bind.annotation.*;
  */
 @Api(tags = {"ES测试demoApi"})
 @RestController
-@RequestMapping("/demo")
-public class ItemDemoSpi {
+@RequestMapping("/demo/test")
+public class DemoTestSpi {
 
     @Autowired
-    ItemService itemService;
+    DemoTestService demoTestService;
 
     @PostMapping("/add/index")
     public Boolean addIndex(){
-        return itemService.addIndex();
+        return demoTestService.addIndex();
     }
 
     @PostMapping("/add/document")
-    public Boolean addDocument(@RequestBody ItemDTO dto) {
-        return itemService.addDocument(dto);
+    public Boolean addDocument(@RequestBody DemoTestDto dto) {
+        return demoTestService.addDocument(dto);
     }
 
     @GetMapping("/init/data")
     public Boolean esInitData(){
-        return itemService.initIndexData();
+        return demoTestService.initIndexData();
     }
 
     @PostMapping("/search/item/list")
-    public ItemDTO searchItemList(@RequestBody ItemDTO.Param param){
-        return itemService.searchItemList(param);
+    public DemoTestDto searchItemList(@RequestBody DemoTestDto.Param param){
+        return demoTestService.searchItemList(param);
     }
 
 
     @DeleteMapping("/del/document")
     public Boolean delDocumentById(@RequestBody BaseIdDto idDto){
-        return itemService.delDocumentById(idDto.getId());
+        return demoTestService.delDocumentById(idDto.getId());
     }
 
 

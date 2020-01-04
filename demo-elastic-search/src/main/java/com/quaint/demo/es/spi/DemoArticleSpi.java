@@ -12,13 +12,13 @@ import org.springframework.web.bind.annotation.*;
  */
 @Api(tags = {"ES-DemoArticleApi"})
 @RestController
-@RequestMapping("/demo")
+@RequestMapping("/demo/article")
 public class DemoArticleSpi {
 
     @Autowired
     DemoArticleService demoArticleService;
 
-    @PostMapping("/article/list")
+    @PostMapping("/list")
     DemoArticleDto getDemoArticleList(@RequestBody DemoArticleDto.Param param){
         return demoArticleService.getDemoArticleList(param);
     }

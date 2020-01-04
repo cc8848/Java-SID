@@ -1,17 +1,12 @@
 package com.quaint.demo.es.service;
 
-import com.quaint.demo.es.dto.ItemDTO;
-import com.quaint.demo.es.dto.base.BaseIdDto;
-import com.quaint.demo.es.index.ItemIndex;
-import com.sun.org.apache.xpath.internal.operations.Bool;
-
-import java.util.List;
+import com.quaint.demo.es.dto.DemoTestDto;
 
 /**
  * @author qi cong
  * @date 2019-12-26 11:33
  */
-public interface ItemService {
+public interface DemoTestService {
 
 
     /**
@@ -22,9 +17,10 @@ public interface ItemService {
 
     /**
      * repository 增加文档记录
+     * @param dto dto
      * @return bool
      */
-    Boolean addDocument(ItemDTO dto);
+    Boolean addDocument(DemoTestDto dto);
 
     /**
      * 初始化索引数据
@@ -37,7 +33,7 @@ public interface ItemService {
      * @param param param
      * @return list
      */
-    ItemDTO searchItemList(ItemDTO.Param param);
+    DemoTestDto searchItemList(DemoTestDto.Param param);
 
     /**
      * 通过文档id 删除 对应文档

@@ -1,8 +1,5 @@
 package com.quaint.demo.es.handler.impl;
 
-import com.baomidou.mybatisplus.core.metadata.IPage;
-import com.baomidou.mybatisplus.extension.plugins.pagination.Page;
-import com.quaint.demo.es.dto.base.BasePageDto;
 import com.quaint.demo.es.enums.DataType;
 import com.quaint.demo.es.handler.AbstractDataChangeHandler;
 import com.quaint.demo.es.index.DemoArticleIndex;
@@ -37,13 +34,11 @@ public class DemoArticleHandler extends AbstractDataChangeHandler<Integer> {
         int size = 10;
         List<DemoArticlePO> page = demoArticleMapper.getDemoArticleListByPage(0, size);
         while (!CollectionUtils.isEmpty(page)){
-
             // 分批处理数据
             batchUpdate(page, po -> handleChange(po.getId()));
             num++;
             page = demoArticleMapper.getDemoArticleListByPage(num*size, size);
         }
-
     }
 
     @Override

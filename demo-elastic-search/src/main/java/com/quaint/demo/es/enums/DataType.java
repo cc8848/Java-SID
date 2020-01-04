@@ -9,7 +9,7 @@ public enum DataType {
     /**
      * item 类型
      */
-    ITEM_TYPE(1,"测试Item类型"),
+    DEMO_TEST_TYPE(1,"测试demo类型"),
     /**
      * demo article type
      */

@@ -10,7 +10,7 @@ import java.time.LocalDateTime;
  * @date 2019-12-26 11:15
  */
 @Data
-public class ItemPo {
+public class DemoTestPo {
 
     /**
      * 主键

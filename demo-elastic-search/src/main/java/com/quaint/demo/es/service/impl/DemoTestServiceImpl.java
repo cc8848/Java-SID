@@ -1,11 +1,11 @@
 package com.quaint.demo.es.service.impl;
 
-import com.quaint.demo.es.dto.ItemDTO;
-import com.quaint.demo.es.handler.impl.ItemHandler;
-import com.quaint.demo.es.index.ItemIndex;
-import com.quaint.demo.es.mapper.ItemMapper;
-import com.quaint.demo.es.repository.ItemRepository;
-import com.quaint.demo.es.service.ItemService;
+import com.quaint.demo.es.dto.DemoTestDto;
+import com.quaint.demo.es.handler.impl.DemoTestHandler;
+import com.quaint.demo.es.index.DemoTestIndex;
+import com.quaint.demo.es.virtualdb.mapper.DemoTestMapper;
+import com.quaint.demo.es.repository.DemoTestRepository;
+import com.quaint.demo.es.service.DemoTestService;
 import lombok.extern.slf4j.Slf4j;
 import org.elasticsearch.index.query.BoolQueryBuilder;
 import org.elasticsearch.index.query.QueryBuilders;
@@ -30,56 +30,56 @@ import java.util.stream.Collectors;
  */
 @Service
 @Slf4j
-public class ItemServiceImpl implements ItemService {
+public class DemoTestServiceImpl implements DemoTestService {
 
     @Autowired
     ElasticsearchTemplate elasticsearchTemplate;
 
     @Autowired
-    ItemRepository itemRepository;
+    DemoTestRepository demoTestRepository;
 
     @Autowired
-    ItemMapper itemMapper;
+    DemoTestMapper demoTestMapper;
 
     @Autowired
-    ItemHandler itemHandler;
+    DemoTestHandler demoTestHandler;
 
 
     @Override
     public Boolean addIndex() {
         // 可以根据类的信息在项目启动时会自动生成，也可以手动指定indexName和Settings -->  elasticsearchTemplate.putMapping;
         // 一版情况下使用不到
-        elasticsearchTemplate.createIndex(ItemIndex.class);
+        elasticsearchTemplate.createIndex(DemoTestIndex.class);
         return true;
     }
 
     @Override
     public Boolean initIndexData() {
-        itemHandler.refresh();
+        demoTestHandler.refresh();
         return true;
     }
 
     @Override
-    public Boolean addDocument(ItemDTO dto) {
+    public Boolean addDocument(DemoTestDto dto) {
 
-        ItemIndex itemIndex = new ItemIndex();
-        BeanUtils.copyProperties(dto,itemIndex);
-        itemIndex.setLike(false);
-        itemIndex.setCreateTime(LocalDateTime.now());
+        DemoTestIndex demoTestIndex = new DemoTestIndex();
+        BeanUtils.copyProperties(dto, demoTestIndex);
+        demoTestIndex.setLike(false);
+        demoTestIndex.setCreateTime(LocalDateTime.now());
 
-        log.info("save : [{}]",itemIndex.toString());
-        itemRepository.save(itemIndex);
+        log.info("save : [{}]", demoTestIndex.toString());
+        demoTestRepository.save(demoTestIndex);
         return true;
     }
 
     @Override
     public Boolean delDocumentById(Long id) {
-        itemRepository.deleteById(id);
+        demoTestRepository.deleteById(id);
         return true;
     }
 
     @Override
-    public ItemDTO searchItemList(ItemDTO.Param param) {
+    public DemoTestDto searchItemList(DemoTestDto.Param param) {
 
         if (param != null) {
 
@@ -117,14 +117,14 @@ public class ItemServiceImpl implements ItemService {
 //                    new Script("Math.random()"), ScriptSortBuilder.ScriptSortType.NUMBER).order(SortOrder.DESC));
 
             // 开始查询
-            Page<ItemIndex> searchPage = itemRepository.search(queryBuilder.build());
+            Page<DemoTestIndex> searchPage = demoTestRepository.search(queryBuilder.build());
 
             // 封装dto
-            ItemDTO respDto = new ItemDTO();
+            DemoTestDto respDto = new DemoTestDto();
             respDto.setTotalCount(searchPage.getTotalElements());
-            List<ItemDTO.Result> resultList = searchPage.getContent().stream().map(itemIndex -> {
-                ItemDTO.Result result = new ItemDTO.Result();
-                BeanUtils.copyProperties(itemIndex, result);
+            List<DemoTestDto.Result> resultList = searchPage.getContent().stream().map(demoTestIndex -> {
+                DemoTestDto.Result result = new DemoTestDto.Result();
+                BeanUtils.copyProperties(demoTestIndex, result);
                 return result;
             }).collect(Collectors.toList());
             respDto.setItemList(resultList);

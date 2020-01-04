@@ -1,4 +1,4 @@
-package com.quaint.demo.es.database;
+package com.quaint.demo.es.virtualdb;
 
 /**
  * 不想链接数据库的, 可以实现本接口 临时模拟数据库

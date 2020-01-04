@@ -5,6 +5,8 @@
     1. spring 整合 elasticsearch
     2. spring 整合 mybatis-plus
     3. 包含事件封装代码练习
+    4. demo_test 没有连接数据库
+    5. demo_article 连接了数据库
     
 
 **ES 6-2-2下载地址**
