@@ -114,4 +114,11 @@ public class BasePageDto implements Serializable {
         return false;
     }
 
+    public BasePageDto(Integer pageNum, Integer pageSize) {
+        this.pageNum = pageNum;
+        this.pageSize = pageSize;
+    }
+
+    public BasePageDto() {
+    }
 }

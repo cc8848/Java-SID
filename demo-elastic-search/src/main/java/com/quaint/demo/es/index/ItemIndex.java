@@ -13,7 +13,7 @@ import java.time.LocalDateTime;
  * @author qi cong
  * @date 2019-12-26 11:15
  */
-@Document(indexName = "demo", type = "item")
+@Document(indexName = "demo_item")
 @Data
 public class ItemIndex {
 

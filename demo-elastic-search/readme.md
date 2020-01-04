@@ -4,7 +4,7 @@
 
     1. spring 整合 elasticsearch
     2. spring 整合 mybatis-plus
-    3. 包含小部分封装代码的练习
+    3. 包含事件封装代码练习
     
 
 **ES 6-2-2下载地址**

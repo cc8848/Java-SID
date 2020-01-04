@@ -9,7 +9,11 @@ public enum DataType {
     /**
      * item 类型
      */
-    ITEM_TYPE(1,"测试Item类型")
+    ITEM_TYPE(1,"测试Item类型"),
+    /**
+     * demo article type
+     */
+    DEMO_ARTICLE_TYPE(2,"demo article type")
     ;
 
     private Integer val;

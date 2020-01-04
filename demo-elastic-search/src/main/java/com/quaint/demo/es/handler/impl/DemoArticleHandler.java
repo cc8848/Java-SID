@@ -1,0 +1,65 @@
+package com.quaint.demo.es.handler.impl;
+
+import com.baomidou.mybatisplus.core.metadata.IPage;
+import com.baomidou.mybatisplus.extension.plugins.pagination.Page;
+import com.quaint.demo.es.dto.base.BasePageDto;
+import com.quaint.demo.es.enums.DataType;
+import com.quaint.demo.es.handler.AbstractDataChangeHandler;
+import com.quaint.demo.es.index.DemoArticleIndex;
+import com.quaint.demo.es.mapper.DemoArticleMapper;
+import com.quaint.demo.es.po.DemoArticlePO;
+import com.quaint.demo.es.repository.DemoArticleRepository;
+import org.springframework.beans.BeanUtils;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Component;
+import org.springframework.util.CollectionUtils;
+
+import java.util.List;
+
+/**
+ * @author quaint
+ * @date 2020-01-04 12:50
+ */
+@Component
+public class DemoArticleHandler extends AbstractDataChangeHandler<Integer> {
+
+    @Autowired
+    DemoArticleMapper demoArticleMapper;
+
+    @Autowired
+    DemoArticleRepository demoArticleRepository;
+
+    @Override
+    public void refresh() {
+        demoArticleRepository.deleteAll();
+        // 分批 刷新数据开始
+        int num = 0;
+        int size = 10;
+        List<DemoArticlePO> page = demoArticleMapper.getDemoArticleListByPage(0, size);
+        while (!CollectionUtils.isEmpty(page)){
+
+            // 分批处理数据
+            batchUpdate(page, po -> handleChange(po.getId()));
+            num++;
+            page = demoArticleMapper.getDemoArticleListByPage(num*size, size);
+        }
+
+    }
+
+    @Override
+    public void handleChange(Integer pkId) {
+        DemoArticlePO po = demoArticleMapper.selectById(pkId);
+        if (po == null){
+            demoArticleRepository.deleteById(pkId);
+        } else {
+            DemoArticleIndex index = new DemoArticleIndex();
+            BeanUtils.copyProperties(po,index);
+            demoArticleRepository.save(index);
+        }
+    }
+
+    @Override
+    public boolean support(DataType dataType) {
+        return DataType.DEMO_ARTICLE_TYPE.equals(dataType);
+    }
+}
