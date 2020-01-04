@@ -1,7 +1,8 @@
 # SpringBoot Integration Demo
 
+---
 
-### DESC:
+## DESC:
     
 Springboot integration demo project
 
@@ -17,11 +18,11 @@ parent pom desc:
 
 ---
 
-### demo-elastic-search
+## [demo-elastic-search](https://github.com/quaintclever/Java-SID/tree/master/demo-elastic-search)
 
 base see: parent pom
 
-demo-elastic-search pom desc:
+module pom desc:
 
 | name | version |
 | :---: | :---: |
@@ -31,7 +32,7 @@ demo-elastic-search pom desc:
 | druid | 1.0.25 |
 | reactor-core | 3.1.6.RELEASE |
 		 
-SpringBoot version comparison elasticsearch list
+springboot version comparison elasticsearch list:
 
 | Spring Data Release Train | Spring Data Elasticsearch  |  Elasticsearch  | Spring Boot |
 | --- | :---: | :---: | :---: |
@@ -43,11 +44,11 @@ SpringBoot version comparison elasticsearch list
 
 ---
 
-### demo-mybatis-plus
+## [demo-mybatis-plus](https://github.com/quaintclever/Java-SID/tree/master/demo-mybatis-plus)
 
 base see: parent pom
 
-demo-mybatis-plus pom desc:
+module pom desc:
 
 | name | version |
 | :---: | :---: |
@@ -59,11 +60,11 @@ demo-mybatis-plus pom desc:
 
 ---
 
-### demo-mail
+## [demo-mail](https://github.com/quaintclever/Java-SID/tree/master/demo-mail)
 
 base see: parent pom
 
-demo-mail pom desc:
+module pom desc:
 
 | name | version |
 | :---: | :---: |
@@ -72,11 +73,11 @@ demo-mail pom desc:
 
 ---
 
-### demo-mybatis-generator
+## [demo-mybatis-generator](https://github.com/quaintclever/Java-SID/tree/master/demo-mybatis-generator)
 
 base see: parent pom
 
-demo-mybatis-generator pom desc:
+module pom desc:
 
 | name | version |
 | :---: | :---: |
