@@ -1,7 +1,7 @@
 package com.quaint.demo.es.event;
 
 import com.baomidou.mybatisplus.core.toolkit.Constants;
-import com.quaint.demo.es.annotation.DataChange;
+import com.quaint.demo.es.config.annotation.DataChange;
 import com.quaint.demo.es.enums.DataGetMode;
 import com.quaint.demo.es.enums.DataType;
 import com.quaint.demo.es.po.DemoArticlePO;

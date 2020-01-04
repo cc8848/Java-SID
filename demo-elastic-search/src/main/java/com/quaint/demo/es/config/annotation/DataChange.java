@@ -1,4 +1,4 @@
-package com.quaint.demo.es.annotation;
+package com.quaint.demo.es.config.annotation;
 
 import com.quaint.demo.es.enums.DataGetMode;
 
