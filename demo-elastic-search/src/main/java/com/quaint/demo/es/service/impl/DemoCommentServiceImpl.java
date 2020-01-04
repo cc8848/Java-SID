@@ -1,6 +1,6 @@
 package com.quaint.demo.es.service.impl;
 
-import com.quaint.demo.es.handler.IndexDataHandler;
+import com.quaint.demo.es.search.handler.abst.IndexDataHandler;
 import com.quaint.demo.es.service.DemoCommentService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;

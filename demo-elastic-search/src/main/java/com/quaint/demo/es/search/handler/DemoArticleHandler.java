@@ -1,11 +1,11 @@
-package com.quaint.demo.es.handler.impl;
+package com.quaint.demo.es.search.handler;
 
 import com.quaint.demo.es.enums.DataType;
-import com.quaint.demo.es.handler.AbstractDataChangeHandler;
-import com.quaint.demo.es.index.DemoArticleIndex;
+import com.quaint.demo.es.search.handler.abst.AbstractDataChangeHandler;
+import com.quaint.demo.es.search.index.DemoArticleIndex;
 import com.quaint.demo.es.mapper.DemoArticleMapper;
 import com.quaint.demo.es.po.DemoArticlePO;
-import com.quaint.demo.es.index.repository.DemoArticleRepository;
+import com.quaint.demo.es.search.repository.DemoArticleRepository;
 import org.springframework.beans.BeanUtils;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;

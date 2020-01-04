@@ -1,4 +1,4 @@
-package com.quaint.demo.es.helper;
+package com.quaint.demo.es.config.helper;
 
 import com.fasterxml.jackson.databind.DeserializationFeature;
 import com.fasterxml.jackson.databind.ObjectMapper;

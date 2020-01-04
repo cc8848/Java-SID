@@ -1,6 +1,6 @@
 package com.quaint.demo.es.event;
 
-import com.quaint.demo.es.handler.IndexDataHandler;
+import com.quaint.demo.es.search.handler.abst.IndexDataHandler;
 import com.quaint.demo.es.utils.ThreadPoolUtils;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;

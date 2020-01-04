@@ -1,4 +1,4 @@
-package com.quaint.demo.es.handler;
+package com.quaint.demo.es.search.handler.abst;
 
 import com.quaint.demo.es.enums.DataType;
 

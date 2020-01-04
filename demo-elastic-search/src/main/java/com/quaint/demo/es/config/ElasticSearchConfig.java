@@ -1,7 +1,7 @@
 package com.quaint.demo.es.config;
 
 import com.quaint.demo.es.event.DataChangeInterceptor;
-import com.quaint.demo.es.helper.DemoEntityMapper;
+import com.quaint.demo.es.config.helper.DemoEntityMapper;
 import org.elasticsearch.client.Client;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;

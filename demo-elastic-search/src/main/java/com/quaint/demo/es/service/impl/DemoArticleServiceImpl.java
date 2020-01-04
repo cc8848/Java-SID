@@ -2,10 +2,10 @@ package com.quaint.demo.es.service.impl;
 
 import com.quaint.demo.es.dto.article.AddDemoArticleReqDto;
 import com.quaint.demo.es.dto.article.DemoArticleDto;
-import com.quaint.demo.es.index.DemoArticleIndex;
+import com.quaint.demo.es.search.index.DemoArticleIndex;
 import com.quaint.demo.es.mapper.DemoArticleMapper;
 import com.quaint.demo.es.po.DemoArticlePO;
-import com.quaint.demo.es.index.repository.DemoArticleRepository;
+import com.quaint.demo.es.search.repository.DemoArticleRepository;
 import com.quaint.demo.es.service.DemoArticleService;
 import org.apache.commons.lang3.StringUtils;
 import org.elasticsearch.index.query.BoolQueryBuilder;

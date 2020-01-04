@@ -1,4 +1,4 @@
-package com.quaint.demo.es.index;
+package com.quaint.demo.es.search.index;
 
 import lombok.Data;
 import org.springframework.data.annotation.Id;

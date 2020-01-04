@@ -1,10 +1,10 @@
 package com.quaint.demo.es.service.impl;
 
 import com.quaint.demo.es.dto.DemoTestDto;
-import com.quaint.demo.es.handler.impl.DemoTestHandler;
-import com.quaint.demo.es.index.DemoTestIndex;
+import com.quaint.demo.es.search.handler.DemoTestHandler;
+import com.quaint.demo.es.search.index.DemoTestIndex;
 import com.quaint.demo.es.virtualdb.mapper.DemoTestMapper;
-import com.quaint.demo.es.index.repository.DemoTestRepository;
+import com.quaint.demo.es.search.repository.DemoTestRepository;
 import com.quaint.demo.es.service.DemoTestService;
 import lombok.extern.slf4j.Slf4j;
 import org.elasticsearch.index.query.BoolQueryBuilder;
