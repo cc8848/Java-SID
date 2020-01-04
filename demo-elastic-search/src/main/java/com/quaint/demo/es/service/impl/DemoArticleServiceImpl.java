@@ -5,7 +5,7 @@ import com.quaint.demo.es.dto.article.DemoArticleDto;
 import com.quaint.demo.es.index.DemoArticleIndex;
 import com.quaint.demo.es.mapper.DemoArticleMapper;
 import com.quaint.demo.es.po.DemoArticlePO;
-import com.quaint.demo.es.repository.DemoArticleRepository;
+import com.quaint.demo.es.index.repository.DemoArticleRepository;
 import com.quaint.demo.es.service.DemoArticleService;
 import org.apache.commons.lang3.StringUtils;
 import org.elasticsearch.index.query.BoolQueryBuilder;

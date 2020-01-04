@@ -1,6 +1,7 @@
 package com.quaint.demo.es.event;
 
 import com.baomidou.mybatisplus.core.toolkit.Constants;
+import com.quaint.demo.es.annotation.DataChange;
 import com.quaint.demo.es.enums.DataGetMode;
 import com.quaint.demo.es.enums.DataType;
 import com.quaint.demo.es.po.DemoArticlePO;
@@ -25,6 +26,7 @@ import java.util.Map;
 import java.util.Properties;
 
 /**
+ * mybatis 拦截并同步es
  * @author quaint
  * @date 2020-01-04 16:23
  */
@@ -101,7 +103,7 @@ public class DataChangeInterceptor implements Interceptor {
     private Mono<Context> resolveCustomize(Context context){
         return Mono.fromSupplier(()->context.getMapperClass())
                 // 找到所有包含DataChange注解的方法
-                .flatMapMany(mapperClass->Flux.fromIterable(MethodUtils.getMethodsListWithAnnotation(mapperClass,DataChange.class)))
+                .flatMapMany(mapperClass->Flux.fromIterable(MethodUtils.getMethodsListWithAnnotation(mapperClass, DataChange.class)))
                 // 找到当前方法
                 .filter(method -> method.getName().equals(context.getMapperMethodName()))
                 // 取第一个

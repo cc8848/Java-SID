@@ -5,7 +5,7 @@ import com.quaint.demo.es.handler.AbstractDataChangeHandler;
 import com.quaint.demo.es.index.DemoArticleIndex;
 import com.quaint.demo.es.mapper.DemoArticleMapper;
 import com.quaint.demo.es.po.DemoArticlePO;
-import com.quaint.demo.es.repository.DemoArticleRepository;
+import com.quaint.demo.es.index.repository.DemoArticleRepository;
 import org.springframework.beans.BeanUtils;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;

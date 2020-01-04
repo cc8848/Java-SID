@@ -5,7 +5,7 @@ import com.quaint.demo.es.handler.AbstractDataChangeHandler;
 import com.quaint.demo.es.index.DemoTestIndex;
 import com.quaint.demo.es.virtualdb.mapper.DemoTestMapper;
 import com.quaint.demo.es.po.DemoTestPo;
-import com.quaint.demo.es.repository.DemoTestRepository;
+import com.quaint.demo.es.index.repository.DemoTestRepository;
 import org.springframework.beans.BeanUtils;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;

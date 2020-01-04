@@ -1,4 +1,4 @@
-package com.quaint.demo.es.repository;
+package com.quaint.demo.es.index.repository;
 
 import com.quaint.demo.es.index.DemoTestIndex;
 import org.springframework.data.elasticsearch.repository.ElasticsearchRepository;
