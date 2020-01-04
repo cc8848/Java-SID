@@ -1,5 +1,6 @@
 package com.quaint.demo.es.dto.article;
 
+import com.fasterxml.jackson.annotation.JsonFormat;
 import com.quaint.demo.es.dto.base.BasePageDto;
 import io.swagger.annotations.ApiModel;
 import io.swagger.annotations.ApiModelProperty;
@@ -45,6 +46,10 @@ public class DemoArticleDto{
         @ApiModelProperty("内容")
         private String content;
 
+        @ApiModelProperty("浏览量")
+        private Integer pageViews;
+
+        @JsonFormat(pattern = "yyyy-MM-dd HH:mm:ss")
         @ApiModelProperty("创建时间")
         private LocalDateTime createTime;
 

@@ -32,6 +32,12 @@ public class DemoArticleIndex {
     private String content;
 
     /**
+     * 浏览量
+     */
+    @Field(type = FieldType.Integer)
+    private Integer pageViews;
+
+    /**
      * 创建时间
      */
     @Field(type = FieldType.Date)

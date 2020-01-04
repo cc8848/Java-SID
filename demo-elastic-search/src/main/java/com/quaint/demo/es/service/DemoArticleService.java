@@ -2,6 +2,7 @@ package com.quaint.demo.es.service;
 
 import com.quaint.demo.es.dto.article.AddDemoArticleReqDto;
 import com.quaint.demo.es.dto.article.DemoArticleDto;
+import com.quaint.demo.es.dto.base.BaseIdDto;
 
 /**
  * @author quaint
@@ -22,5 +23,12 @@ public interface DemoArticleService {
      * @return boolean
      */
     Boolean addDemoArticle(AddDemoArticleReqDto reqDto);
+
+    /**
+     * 通过id查询文章
+     * @param id id
+     * @return 文章
+     */
+    DemoArticleDto.Result getDemoArticleById(Integer id);
 
 }

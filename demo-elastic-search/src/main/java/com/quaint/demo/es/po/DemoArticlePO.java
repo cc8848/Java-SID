@@ -44,6 +44,11 @@ public class DemoArticlePO implements Serializable {
     private String content;
 
     /**
+     * 浏览量
+     */
+    private Integer pageViews;
+
+    /**
      * 创建时间
      */
     @TableField("create_time")

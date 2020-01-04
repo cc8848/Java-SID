@@ -99,4 +99,13 @@ public class DemoArticleServiceImpl implements DemoArticleService {
         demoArticleMapper.insert(po);
         return true;
     }
+
+    @Override
+    @Transactional(rollbackFor = Exception.class)
+    public DemoArticleDto.Result getDemoArticleById(Integer id) {
+        DemoArticleDto.Result result = new DemoArticleDto.Result();
+        demoArticleRepository.findById(id).ifPresent(idx -> BeanUtils.copyProperties(idx,result));
+        demoArticleMapper.addPageViews(id);
+        return result;
+    }
 }
