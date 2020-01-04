@@ -31,7 +31,7 @@ demo-elastic-search pom desc:
 | druid | 1.0.25 |
 | reactor-core | 3.1.6.RELEASE |
 		 
-**SpringBoot version comparison elasticsearch list**
+SpringBoot version comparison elasticsearch list
 
 | Spring Data Release Train | Spring Data Elasticsearch  |  Elasticsearch  | Spring Boot |
 | --- | :---: | :---: | :---: |
