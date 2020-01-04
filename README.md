@@ -20,6 +20,7 @@ parent pom desc:
 ### demo-elastic-search
 
 base see: parent pom
+
 demo-elastic-search pom desc:
 
 | name | version |
@@ -45,6 +46,7 @@ demo-elastic-search pom desc:
 ### demo-mybatis-plus
 
 base see: parent pom
+
 demo-mybatis-plus pom desc:
 
 | name | version |
@@ -60,6 +62,7 @@ demo-mybatis-plus pom desc:
 ### demo-mail
 
 base see: parent pom
+
 demo-mail pom desc:
 
 | name | version |
@@ -72,6 +75,7 @@ demo-mail pom desc:
 ### demo-mybatis-generator
 
 base see: parent pom
+
 demo-mybatis-generator pom desc:
 
 | name | version |
