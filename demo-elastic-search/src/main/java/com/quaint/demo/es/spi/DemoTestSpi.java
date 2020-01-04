@@ -34,11 +34,10 @@ public class DemoTestSpi {
         return demoTestService.initIndexData();
     }
 
-    @PostMapping("/search/item/list")
+    @PostMapping("/search/list")
     public DemoTestDto searchItemList(@RequestBody DemoTestDto.Param param){
         return demoTestService.searchItemList(param);
     }
-
 
     @DeleteMapping("/del/document")
     public Boolean delDocumentById(@RequestBody BaseIdDto idDto){

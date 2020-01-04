@@ -1,8 +1,10 @@
 package com.quaint.demo.es.service.impl;
 
+import com.quaint.demo.es.dto.article.AddDemoArticleReqDto;
 import com.quaint.demo.es.dto.article.DemoArticleDto;
 import com.quaint.demo.es.index.DemoArticleIndex;
 import com.quaint.demo.es.mapper.DemoArticleMapper;
+import com.quaint.demo.es.po.DemoArticlePO;
 import com.quaint.demo.es.repository.DemoArticleRepository;
 import com.quaint.demo.es.service.DemoArticleService;
 import org.apache.commons.lang3.StringUtils;
@@ -18,7 +20,9 @@ import org.springframework.data.domain.Page;
 import org.springframework.data.domain.PageRequest;
 import org.springframework.data.elasticsearch.core.query.NativeSearchQueryBuilder;
 import org.springframework.stereotype.Service;
+import org.springframework.transaction.annotation.Transactional;
 
+import java.time.LocalDateTime;
 import java.util.List;
 import java.util.stream.Collectors;
 
@@ -41,7 +45,7 @@ public class DemoArticleServiceImpl implements DemoArticleService {
 
         NativeSearchQueryBuilder queryBuilder = new NativeSearchQueryBuilder();
 
-        // bool 查询
+        // bool 查询条件
         BoolQueryBuilder bool = new BoolQueryBuilder();
         if (StringUtils.isNotEmpty(param.getTitle())){
             bool.should(QueryBuilders.matchQuery("title",param.getTitle()));
@@ -62,9 +66,22 @@ public class DemoArticleServiceImpl implements DemoArticleService {
 
         // 查询
         Page<DemoArticleIndex> search = demoArticleRepository.search(queryBuilder.build());
+        return processIndex2Dto(search);
+    }
 
-        // 查询出来的结果转换为dto
-        List<DemoArticleDto.Result> results = processIndex2Dto(search.getContent());
+    /**
+     * 将indexList 转换为 dtoList 并返回 dto
+     * @param search pageList
+     * @return dto
+     */
+    private DemoArticleDto processIndex2Dto(Page<DemoArticleIndex> search){
+
+        // 将 search 查询出来的数据 转换为 dto list
+        List<DemoArticleDto.Result> results = search.getContent().stream().map(idx -> {
+            DemoArticleDto.Result result = new DemoArticleDto.Result();
+            BeanUtils.copyProperties(idx, result);
+            return result;
+        }).collect(Collectors.toList());
 
         // 封装返回dto
         DemoArticleDto reDto = new DemoArticleDto();
@@ -73,17 +90,13 @@ public class DemoArticleServiceImpl implements DemoArticleService {
         return reDto;
     }
 
-    /**
-     * 将indexList 转换为 dtoList 并返回
-     * @param indexList indexList
-     * @return dtoList
-     */
-    private List<DemoArticleDto.Result> processIndex2Dto(List<DemoArticleIndex> indexList){
-        return indexList.stream().map(idx -> {
-            DemoArticleDto.Result result = new DemoArticleDto.Result();
-            BeanUtils.copyProperties(idx, result);
-            return result;
-        }).collect(Collectors.toList());
+    @Override
+    @Transactional(rollbackFor = Exception.class)
+    public Boolean addDemoArticle(AddDemoArticleReqDto reqDto) {
+        DemoArticlePO po = new DemoArticlePO();
+        BeanUtils.copyProperties(reqDto,po);
+        po.setCreateTime(LocalDateTime.now());
+        demoArticleMapper.insert(po);
+        return true;
     }
-
 }

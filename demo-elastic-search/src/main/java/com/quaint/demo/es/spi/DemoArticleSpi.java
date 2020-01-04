@@ -1,5 +1,6 @@
 package com.quaint.demo.es.spi;
 
+import com.quaint.demo.es.dto.article.AddDemoArticleReqDto;
 import com.quaint.demo.es.dto.article.DemoArticleDto;
 import com.quaint.demo.es.service.DemoArticleService;
 import io.swagger.annotations.Api;
@@ -21,6 +22,11 @@ public class DemoArticleSpi {
     @PostMapping("/list")
     DemoArticleDto getDemoArticleList(@RequestBody DemoArticleDto.Param param){
         return demoArticleService.getDemoArticleList(param);
+    }
+
+    @PostMapping("/add")
+    Boolean addDemoArticle(@RequestBody AddDemoArticleReqDto reqDto){
+        return demoArticleService.addDemoArticle(reqDto);
     }
 
 }

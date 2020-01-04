@@ -1,5 +1,6 @@
 package com.quaint.demo.es.config;
 
+import com.quaint.demo.es.event.DataChangeInterceptor;
 import com.quaint.demo.es.helper.DemoEntityMapper;
 import org.elasticsearch.client.Client;
 import org.springframework.context.annotation.Bean;
@@ -24,6 +25,15 @@ public class ElasticSearchConfig {
     @Bean
     public ElasticsearchTemplate elasticsearchTemplate(Client client, ElasticsearchConverter converter){
         return new ElasticsearchTemplate(client, converter,new DefaultResultMapper(converter.getMappingContext(),new DemoEntityMapper()));
+    }
+
+    /**
+     * 数据变化插件
+     * @return
+     */
+    @Bean
+    public DataChangeInterceptor dataChangeInterceptor(){
+        return new DataChangeInterceptor();
     }
 
 }
