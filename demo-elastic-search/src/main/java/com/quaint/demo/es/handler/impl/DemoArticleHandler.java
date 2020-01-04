@@ -29,9 +29,9 @@ public class DemoArticleHandler extends AbstractDataChangeHandler<Integer> {
     @Override
     public void refresh() {
         demoArticleRepository.deleteAll();
-        // 分批 刷新数据开始
+        // 分批 刷新数据开始 , 数据量较小, 这里3个一批
         int num = 0;
-        int size = 10;
+        int size = 3;
         List<DemoArticlePO> page = demoArticleMapper.getDemoArticleListByPage(0, size);
         while (!CollectionUtils.isEmpty(page)){
             // 分批处理数据
