@@ -2,6 +2,7 @@
 .idea
 *.iml
 *prod.yml
+apiclient_cert.p12
 logs
 
 # Compiled class file

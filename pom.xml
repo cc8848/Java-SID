@@ -9,6 +9,7 @@
         <module>demo-mail</module>
         <module>demo-mybatis-plus</module>
         <module>demo-mybatis-generator</module>
+        <module>demo-wechat</module>
     </modules>
 
     <!-- 父工程 -->
@@ -30,15 +31,16 @@
     <!-- 版本配置 -->
     <properties>
 
+        <!-- 公共子模块版本 -->
         <java.version>1.8</java.version>
+        <lombok.version>1.16.10</lombok.version>
+        <commons-lang3.version>3.4</commons-lang3.version>
+        <swagger2.version>2.7.0</swagger2.version>
+
+        <!-- 子模块可选版本 -->
         <mysql.version>6.0.6</mysql.version>
         <druid.version>1.0.25</druid.version>
         <mybatis-plus.version>3.0-RC2</mybatis-plus.version>
-        <lombok.version>1.16.10</lombok.version>
-        <modelmapper.version>2.3.2</modelmapper.version>
-        <commons-lang3.version>3.4</commons-lang3.version>
-        <auth0.version>3.4.0</auth0.version>
-        <swagger2.version>2.7.0</swagger2.version>
 
     </properties>
 
@@ -110,19 +112,6 @@
                 <version>${mybatis-plus.version}</version>
             </dependency>
 
-            <!-- https://mvnrepository.com/artifact/org.modelmapper/modelmapper -->
-            <dependency>
-                <groupId>org.modelmapper</groupId>
-                <artifactId>modelmapper</artifactId>
-                <version>${modelmapper.version}</version>
-            </dependency>
-
-            <!-- https://mvnrepository.com/artifact/com.auth0/java-jwt -->
-            <dependency>
-                <groupId>com.auth0</groupId>
-                <artifactId>java-jwt</artifactId>
-                <version>${auth0.version}</version>
-            </dependency>
         </dependencies>
     </dependencyManagement>
 
@@ -138,6 +127,7 @@
                 <artifactId>maven-compiler-plugin</artifactId>
                 <version>3.1</version>
                 <configuration>
+                    <!-- java version -->
                     <source>1.8</source>
                     <target>1.8</target>
                 </configuration>

@@ -161,6 +161,13 @@ public class DataChangeInterceptor implements Interceptor {
             // 发布事件
             // 引用类型直接取参数作为data
             if(DataGetMode.REFERENCE.equals(context.getDataGetMethod())){
+                // 如果 改方法有多个参数, 类型为:MapperMethod.ParamMap 取第一个参数
+                if (arg instanceof MapperMethod.ParamMap){
+                    MapperMethod.ParamMap paramMap = (MapperMethod.ParamMap) arg;
+                    if (paramMap.size()>1){
+                        arg = paramMap.get("param1");
+                    }
+                }
                 DataChangeEvent.add(context.getDataType(),arg).publish();
                 // 如果是实体ID,通过反射取出作为data
             }else if(DataGetMode.ID_OF_ENTITY.equals(context.getDataGetMethod())){
