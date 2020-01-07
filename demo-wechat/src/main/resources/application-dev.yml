@@ -23,11 +23,11 @@ mybatis-plus:
 wx:
   pay:
     # appid
-    appId: @appid
+    appId: appid
     # 微信支付商户号
-    mchId: @mchId
+    mchId: mchId
     #微信支付商户密钥
-    mchKey: @mchKey
+    mchKey: mchKey
     # 服务商模式下的子商户公众账号ID
     # subAppId:
     # 服务商模式下的子商户号
