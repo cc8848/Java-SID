@@ -4,6 +4,7 @@ import cn.binarywang.wx.miniapp.api.WxMaService;
 import cn.binarywang.wx.miniapp.api.impl.WxMaServiceImpl;
 import cn.binarywang.wx.miniapp.config.WxMaInMemoryConfig;
 import com.baomidou.mybatisplus.core.conditions.query.QueryWrapper;
+import com.quaint.demo.wechat.enums.WxTypeEnum;
 import com.quaint.demo.wechat.mapper.DemoWxChannelMapper;
 import com.quaint.demo.wechat.po.DemoWxChannelPO;
 import me.chanjar.weixin.mp.api.WxMpInMemoryConfigStorage;
@@ -18,6 +19,7 @@ import java.util.List;
 import java.util.concurrent.atomic.AtomicBoolean;
 
 /**
+ * 微信服务注册, 从数据库查询出 配置信息
  * @author quaint
  * @date 2020-01-06 13:49
  */
@@ -41,15 +43,18 @@ public class WxServiceRegistry implements ApplicationListener<ContextRefreshedEv
             DemoWxChannelPO queryPo = new DemoWxChannelPO();
             queryPo.setValid(Boolean.TRUE);
             QueryWrapper<DemoWxChannelPO> queryWrapper = new QueryWrapper<>(queryPo);
-
-            List<DemoWxChannelPO> demoWxMpPoList = demoWxChannelMapper.selectList(queryWrapper);
-            demoWxMpPoList.forEach(demoWxMpPo -> {
-                switch (demoWxMpPo.getType()){
-                    case 1://公众号
-                        registerMpService(demoWxMpPo);
+            // 查询出所有的配置信息
+            List<DemoWxChannelPO> demoWxChannelPoList = demoWxChannelMapper.selectList(queryWrapper);
+            demoWxChannelPoList.forEach(wxChannelPo -> {
+                WxTypeEnum type = WxTypeEnum.getEnumByType(wxChannelPo.getType());
+                switch (type){
+                    //公众号
+                    case WX_TYPE_MP:
+                        registerMpService(wxChannelPo);
                         break;
-                    case 2://小程序
-                        registerMaService(demoWxMpPo);
+                    //小程序
+                    case WX_TYPE_MA:
+                        registerMaService(wxChannelPo);
                         break;
                     default:
                         break;

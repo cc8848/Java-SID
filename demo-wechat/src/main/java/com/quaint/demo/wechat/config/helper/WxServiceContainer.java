@@ -10,6 +10,7 @@ import java.util.Objects;
 import java.util.Optional;
 
 /**
+ * 微信服务 容器
  * @author quaint
  * @date 2020-01-06 11:44
  */

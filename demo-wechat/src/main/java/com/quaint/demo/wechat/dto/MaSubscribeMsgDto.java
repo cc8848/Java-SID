@@ -10,14 +10,12 @@ import java.util.ArrayList;
 import java.util.List;
 
 /**
- * 微信官方 于 2020-01-10 下架该接口, 使用消息订阅
- * @see MaSubscribeMsgDto
+ * 订阅消息 dto
  * @author quaint
  * @date 2020-01-07 12:53
  */
 @Data
-@Deprecated
-public class MaTemplateMsgDto {
+public class MaSubscribeMsgDto {
 
     /**
      * @see WxServiceContainer
@@ -28,10 +26,6 @@ public class MaTemplateMsgDto {
     @ApiModelProperty(value = "模板Id",required = true)
     @NotNull(message = "模板不能为空")
     private String templateId;
-
-    @ApiModelProperty(value = "表单Id",required = true)
-    @NotNull(message = "表单Id不能为空")
-    private String formId;
 
     @ApiModelProperty(value = "用户openId",required = true)
     @NotNull(message = "用户openId不能为空")

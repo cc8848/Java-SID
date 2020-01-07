@@ -11,6 +11,7 @@ import java.util.ArrayList;
 import java.util.List;
 
 /**
+ * 公众号模板消息, 2020-01-10 没有影响, 可以继续使用
  * @author quaint
  * @date 2020-01-06 12:42
  */
