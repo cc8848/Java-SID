@@ -13,8 +13,14 @@ import java.util.Objects;
  */
 public class JsonExclusionStrategy implements ExclusionStrategy {
 
+    /**
+     * 过滤的 字段名 集合
+     */
     private List<String> skipFields;
 
+    /**
+     * 过滤的 class 类型
+     */
     private Class<?> aClass;
 
     @Override
@@ -22,6 +28,7 @@ public class JsonExclusionStrategy implements ExclusionStrategy {
         if (Objects.isNull(skipFields)){
             return false;
         }
+        // 判断是否过滤该属性
         return skipFields.contains(fieldAttributes.getName());
     }
 
@@ -30,6 +37,7 @@ public class JsonExclusionStrategy implements ExclusionStrategy {
         if (Objects.isNull(this.aClass)){
             return false;
         }
+        // 是否过滤该类
         return this.aClass.equals(aClass);
     }
 

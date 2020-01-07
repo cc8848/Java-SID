@@ -1,6 +1,7 @@
 package com.quaint.demo.wechat.service.impl;
 
 import cn.binarywang.wx.miniapp.api.WxMaService;
+import cn.binarywang.wx.miniapp.bean.WxMaTemplateData;
 import cn.binarywang.wx.miniapp.bean.WxMaTemplateMessage;
 import com.google.gson.GsonBuilder;
 import com.quaint.demo.wechat.config.helper.JsonExclusionStrategy;
@@ -25,23 +26,6 @@ import java.util.Collections;
 @Service
 @Slf4j
 public class WxMsgServiceImpl implements WxMsgService {
-
-    // 设置json 排除策略
-//    private static ExclusionStrategy myExclusionStrategy = new ExclusionStrategy(){
-//        @Override
-//        public boolean shouldSkipField(FieldAttributes f) {
-//            return f.getName().equals("channel");
-//        }
-//
-//        @Override
-//        public boolean shouldSkipClass(Class<?> clazz) {
-//            return false;
-//        }
-//    };
-//    private static GsonBuilder gsonBuilder = new GsonBuilder();
-//    static {
-//        gsonBuilder.setExclusionStrategies(myExclusionStrategy);
-//    }
 
     @Autowired
     WxServiceContainer wxServiceContainer;
@@ -93,6 +77,7 @@ public class WxMsgServiceImpl implements WxMsgService {
         WxMaService wxMaService = wxServiceContainer.getWxMaService(param.getChannel()).orElseThrow(Exception::new);
         GsonBuilder gsonBuilder = new GsonBuilder();
         gsonBuilder.setExclusionStrategies(new JsonExclusionStrategy(Collections.singletonList("channel")));
+        log.info("json 过滤策略 生成的 json 对象:[{}]",gsonBuilder.create().toJson(param));
         String returnJson = wxMaService.post(WxUrlConstant.MA_SUBSCRIBE_MSG_URL,gsonBuilder.create().toJson(param));
         log.info("wx return json is :[{}]",returnJson);
         return returnJson;
