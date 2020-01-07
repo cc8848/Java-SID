@@ -1,6 +1,6 @@
 package com.quaint.demo.es.virtualdb.mapper.impl;
 
-import com.quaint.demo.es.virtualdb.table.ItemTable;
+import com.quaint.demo.es.virtualdb.table.DemoTestTable;
 import com.quaint.demo.es.virtualdb.mapper.DemoTestMapper;
 import com.quaint.demo.es.po.DemoTestPo;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -18,17 +18,17 @@ import java.util.Optional;
 public class DemoTestMapperImpl implements DemoTestMapper {
 
     @Autowired
-    ItemTable itemTable;
+    DemoTestTable demoTestTable;
 
     @Override
     public DemoTestPo getItemById(Long id) {
-        List<DemoTestPo> poList = itemTable.getPoList();
+        List<DemoTestPo> poList = demoTestTable.getPoList();
         Optional<DemoTestPo> first = poList.stream().filter(po -> po.getId().equals(id)).findFirst();
         return first.orElse(null);
     }
 
     @Override
     public List<DemoTestPo> getItemList() {
-        return itemTable.getPoList();
+        return demoTestTable.getPoList();
     }
 }

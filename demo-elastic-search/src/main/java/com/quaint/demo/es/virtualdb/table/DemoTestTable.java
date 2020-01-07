@@ -13,9 +13,9 @@ import java.util.List;
  * @date 2020-01-03 15:25
  */
 @Component
-public class ItemTable extends AbstractVirtualDataBase<DemoTestPo> {
+public class DemoTestTable extends AbstractVirtualDataBase<DemoTestPo> {
 
-    public ItemTable() {
+    public DemoTestTable() {
         initData(20);
     }
 

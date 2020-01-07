@@ -46,8 +46,11 @@ public class DataChangeInterceptor implements Interceptor {
 
     static{
         DEFAULT_METHODS_MAP = new HashMap<>();
+        // insert 方法需要传一个对象, 从对象中取id 执行事件
         DEFAULT_METHODS_MAP.put("insert", DataGetMode.ID_OF_ENTITY);
-        DEFAULT_METHODS_MAP.put("deleteById", DataGetMode.ID_OF_ENTITY);
+        // deleteById 传的是一个id  直接传该 id 的引用即可
+        DEFAULT_METHODS_MAP.put("deleteById", DataGetMode.REFERENCE);
+        // updateById 方法需要传一个对象, 从对象中取id 执行事件
         DEFAULT_METHODS_MAP.put("updateById", DataGetMode.ID_OF_ENTITY);
 
         MODEL_CLASS_MAP = new HashMap<>();
