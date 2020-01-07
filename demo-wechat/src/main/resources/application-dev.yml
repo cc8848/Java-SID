@@ -1,0 +1,36 @@
+server:
+  port: 8081
+spring:
+  application:
+    name: demo-wechat
+  datasource:
+    name: demo-db
+    url: jdbc:mysql://localhost:3306/javasid?setUnicode=true&characterEncoding=UTF-8&useSSL=false
+    username: root
+    password: root
+    driver-class-name: com.mysql.cj.jdbc.Driver
+    type: com.alibaba.druid.pool.DruidDataSource
+mybatis-plus:
+  mapper-locations: classpath:/mapper/*Mapper.xml
+  type-aliases-package: com.quaint.demo.mybatis.plus.po
+  configuration:
+    map-underscore-to-camel-case: true
+    log-impl: org.apache.ibatis.logging.stdout.StdOutImpl
+  global-config:
+    db-config:
+      logic-delete-value: 0
+      logic-not-delete-value: 1
+wx:
+  pay:
+    # appid
+    appId: @appid
+    # 微信支付商户号
+    mchId: @mchId
+    #微信支付商户密钥
+    mchKey: @mchKey
+    # 服务商模式下的子商户公众账号ID
+    # subAppId:
+    # 服务商模式下的子商户号
+    # subMchId:
+    # p12证书的位置，可以指定绝对路径，也可以指定类路径（以classpath:开头）
+    keyPath: classpath:key/key.p12
