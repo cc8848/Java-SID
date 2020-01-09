@@ -63,9 +63,9 @@ public class CodeGenerator {
         dsc.setPassword("root");
         generator.setDataSource(dsc);
 
-        // todo 修改3 --> 包配置
+        // todo 修改3 --> 包配置 ,增加temp 临时文件夹
         PackageConfig pc = new PackageConfig();
-        pc.setParent("com.quaint.demo.mybatis.plus")
+        pc.setParent("com.quaint.demo.mybatis.plus.temp")
                 .setEntity("po")
                 .setMapper("mapper")
                 .setController("controller");
