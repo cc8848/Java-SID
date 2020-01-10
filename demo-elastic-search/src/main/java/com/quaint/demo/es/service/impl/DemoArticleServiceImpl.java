@@ -53,6 +53,10 @@ public class DemoArticleServiceImpl implements DemoArticleService {
         if (StringUtils.isNotEmpty(param.getContent())){
             bool.should(QueryBuilders.matchQuery("content",param.getContent()));
         }
+
+        // 过滤作品浏览数 大于1的
+        bool.filter(QueryBuilders.rangeQuery("pageViews").gt(1));
+
         queryBuilder.withQuery(bool);
 
         // 数据排序, 随机排序, 随机后根据时间降序
