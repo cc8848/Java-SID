@@ -1,6 +1,8 @@
 # demo-mail
 
-DESC: 整合了swagger和mail
+##DESC: 
+
+ - spring integration mail
 
 ## 快速上手:
 

@@ -6,7 +6,26 @@
     
 Springboot integration demo project
 
-parent pom desc:
+```java
+/**
+ * desc : Fake code, Just for entertainment
+ * @author quaint 
+ * @date 2020-01-11 15:39:56
+ */
+public class Parent{
+    
+    // Pretend to read pom.xml
+    private Stream<String> parent = Files.lines(Paths.get("pom.xml"));
+    
+    // Pretend to process content
+    protected Consumer<Stream<String>> consumer = (stream) -> stream
+        .filter(str -> str.toString("dependency to table"))
+        .forEach(System.out::printf);
+        
+    // Code block, execution consumer.
+    { consumer.accpt(parent); }
+}
+```
 
 | name | version |
 | :---: | :---: |
@@ -15,21 +34,59 @@ parent pom desc:
 | swagger2 | 2.7.0 |
 | commons-lang3 | 3.4 |
 
+---
+
+## [demo-mybatis-plus](https://github.com/quaintclever/Java-SID/tree/master/demo-mybatis-plus)
+
+```java
+// Fake code, Just for entertainment
+public class MybatisPlus extends Parent{
+    private Stream<String> child = Files.lines(Paths.get("module/pom.xml"));
+    { consumer.accpt(child); }
+}
+```
+
+| name | version |
+| :---: | :---: |
+| mybatis-plus | 3.0-RC2 |
+| mysql | 6.0.6 |
+| druid | 1.0.25 |
+| freemarker | 2.3.29 |
+
+---
+
+## [demo-wechat](https://github.com/quaintclever/Java-SID/tree/master/demo-wechat)
+
+```java
+// Fake code, Just for entertainment
+public class WeChat extends MybatisPlus{
+    private Stream<String> child = Files.lines(Paths.get("module/pom.xml"));
+    { consumer.accpt(child); }
+}
+```
+
+| name | version |
+| :---: | :---: |
+| weixin-java-mp | 3.3.0 |
+| weixin-java-miniapp | 3.3.0 |
+| weixin-java-pay | 3.3.0 |
+| weixin-java-open | 3.3.0 |
 
 ---
 
 ## [demo-elastic-search](https://github.com/quaintclever/Java-SID/tree/master/demo-elastic-search)
 
-base see: parent pom
-
-module pom desc:
+```java
+// Fake code, Just for entertainment
+public class ElasticSearch extends MybatisPlus{
+    private Stream<String> child = Files.lines(Paths.get("module/pom.xml"));
+    { consumer.accpt(child); }
+}
+```
 
 | name | version |
 | :---: | :---: |
 | elastic-search | 2.1.2.RELEASE |
-| mybatis-plus | 3.0-RC2 |
-| mysql | 6.0.6 |
-| druid | 1.0.25 |
 | reactor-core | 3.1.6.RELEASE |
 		 
 springboot version comparison elasticsearch list:
@@ -44,27 +101,16 @@ springboot version comparison elasticsearch list:
 
 ---
 
-## [demo-mybatis-plus](https://github.com/quaintclever/Java-SID/tree/master/demo-mybatis-plus)
-
-base see: parent pom
-
-module pom desc:
-
-| name | version |
-| :---: | :---: |
-| mybatis-plus | 3.0-RC2 |
-| mysql | 6.0.6 |
-| druid | 1.0.25 |
-| freemarker | 2.3.29 |
-
-
----
 
 ## [demo-mail](https://github.com/quaintclever/Java-SID/tree/master/demo-mail)
 
-base see: parent pom
-
-module pom desc:
+```java
+// Fake code, Just for entertainment
+public class Mail extends Parent{
+    private Stream<String> child = Files.lines(Paths.get("module/pom.xml"));
+    { consumer.accpt(child); }
+}
+```
 
 | name | version |
 | :---: | :---: |
@@ -73,11 +119,16 @@ module pom desc:
 
 ---
 
+
 ## [demo-mybatis-generator](https://github.com/quaintclever/Java-SID/tree/master/demo-mybatis-generator)
 
-base see: parent pom
-
-module pom desc:
+```java
+// Fake code, Just for entertainment
+public class Mybatis extends Parent{
+    private Stream<String> child = Files.lines(Paths.get("module/pom.xml"));
+    { consumer.accpt(child); }
+}
+```
 
 | name | version |
 | :---: | :---: |
