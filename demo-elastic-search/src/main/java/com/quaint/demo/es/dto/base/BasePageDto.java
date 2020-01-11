@@ -2,7 +2,9 @@ package com.quaint.demo.es.dto.base;
 
 import io.swagger.annotations.ApiModel;
 import io.swagger.annotations.ApiModelProperty;
+import lombok.AllArgsConstructor;
 import lombok.Data;
+import lombok.NoArgsConstructor;
 
 import java.io.Serializable;
 
@@ -12,6 +14,8 @@ import java.io.Serializable;
  * @date 2019-12-27 11:23
  */
 @Data
+@AllArgsConstructor
+@NoArgsConstructor
 @ApiModel(value = "分页基础dto", description = "用来传递处理参数,返回结果集对象的基础类")
 public class BasePageDto implements Serializable {
 
@@ -40,12 +44,7 @@ public class BasePageDto implements Serializable {
      * @return bool
      */
     public boolean standardization() {
-        if (check()) {
-            pageNum = pageNum > 0 ? pageNum : 1;
-            pageSize = pageSize > 0 ? pageSize : 20;
-            return true;
-        }
-        return false;
+        return standardization(20);
     }
 
     /**
@@ -67,10 +66,7 @@ public class BasePageDto implements Serializable {
      * @return
      */
     public Integer calculationStartNum(){
-        if (standardization()){
-            return (pageNum-1)*pageSize;
-        }
-        return null;
+        return calculationStartNum(20);
     }
 
     /**
@@ -90,13 +86,7 @@ public class BasePageDto implements Serializable {
      * @return bool
      */
     public boolean esStandardization() {
-        if (check()) {
-            // es 分页从 第0页开始,pageNum需要减1, 默认展示10条
-            pageNum = pageNum > 0 ? pageNum-1 : 0;
-            pageSize = pageSize > 0 ? pageSize : 10;
-            return true;
-        }
-        return false;
+        return esStandardization(10);
     }
 
     /**
@@ -114,11 +104,4 @@ public class BasePageDto implements Serializable {
         return false;
     }
 
-    public BasePageDto(Integer pageNum, Integer pageSize) {
-        this.pageNum = pageNum;
-        this.pageSize = pageSize;
-    }
-
-    public BasePageDto() {
-    }
 }
