@@ -1,47 +1,37 @@
-package com.quaint.demo.mail.utils;
+package com.quaint.demo.mail.helper;
 
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.mail.SimpleMailMessage;
+import org.springframework.mail.javamail.JavaMailSender;
 import org.springframework.mail.javamail.JavaMailSenderImpl;
 import org.springframework.mail.javamail.MimeMessageHelper;
 import org.springframework.stereotype.Component;
+
 import javax.annotation.PostConstruct;
 import javax.mail.internet.MimeMessage;
 
 /**
- * javamail 工具类
+ * javamail 使用帮助类, 需要读取配置的 不推荐静态注入
  * @author quaint
  * @Date 2019/2/18
  */
 @Component
 @Slf4j
-public class JavaMailUtil {
+public class MailHelper {
 
     /**
-     * 静态注入 发送者邮箱
+     * 注入 JavaMailSender
      */
-    private static String senderEmail;
-
-    @Value("${spring.mail.username}")
-    public void setSenderEmail(String senderEmail){
-        JavaMailUtil.senderEmail = senderEmail;
-    }
-
-
-    /***
-     * 静态注入 javaMailSender
-     */
-    private static JavaMailSenderImpl mailSender;
-
     @Autowired
-    private JavaMailSenderImpl javaMailSender;
+    private JavaMailSender mailSender;
 
-    @PostConstruct
-    public void init(){
-        mailSender = javaMailSender;
-    }
+    /**
+     * 注入配置文件中的 username 用来当发送邮件的邮箱
+     */
+    @Value("${spring.mail.username}")
+    private String senderEmail;
 
     /**
      * 发送包含简单文本的邮件
@@ -49,7 +39,7 @@ public class JavaMailUtil {
      * @param title  邮件标题
      * @param text   邮件内容
      */
-    public static void sendText(String toMail,String title,String text) {
+    public void sendText(String toMail,String title,String text) {
         SimpleMailMessage simpleMailMessage = new SimpleMailMessage();
         // 设置收件人
         simpleMailMessage.setTo(new String[] {toMail});
@@ -69,7 +59,7 @@ public class JavaMailUtil {
      * @param text   邮件内容
      * @throws Exception ex
      */
-    public static void sendHtml(String toMail,String title,String text) throws Exception {
+    public void sendHtml(String toMail,String title,String text) throws Exception {
         MimeMessage mimeMessage = mailSender.createMimeMessage();
         MimeMessageHelper mimeMessageHelper = new MimeMessageHelper(mimeMessage);
         //发送到传进来的邮箱
