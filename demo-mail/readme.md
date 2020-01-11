@@ -1,6 +1,6 @@
 # demo-mail
 
-##DESC: 
+## DESC: 
 
  - spring integration mail
 
@@ -20,26 +20,25 @@
 ```
 #### application.yml
 
-```yml
-mail:
-    # host: smtp.exmail.qq.com  #企业
-    host: smtp.qq.com  # 个人
-    # 端口号465或587
-    port: 587
-    # 你的邮箱 或者 企业邮箱
-    username: you_email@qq.com
-    # 这里QQ邮箱开通POP3/SMTP提供的授权码，如果邮箱服务商没有授权码，可以使用密码代替
-    password: pwd_or_code
-    # 下面默认就好
-    protocol: smtp
-    default-encoding: UTF-8
+```yaml
+spring: 
+    mail:
+        # host: smtp.exmail.qq.com  #企业
+        host: smtp.qq.com  # 个人
+        # 端口号465或587
+        port: 587
+        # 你的邮箱 或者 企业邮箱
+        username: you_email@qq.com
+        # 这里QQ邮箱开通POP3/SMTP提供的授权码，如果邮箱服务商没有授权码，可以使用密码代替
+        password: pwd_or_code
+        # 下面默认就好
+        protocol: smtp
+        default-encoding: UTF-8
 ```
 
 #### 编写MailHelper
 
-eg: 
 com.quaint.demo.mail.helper.MailHelper
-
 ```java
 @Component
 public class MailHelper {
