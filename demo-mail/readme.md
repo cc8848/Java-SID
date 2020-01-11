@@ -74,7 +74,7 @@ public class MailHelper {
         simpleMailMessage.setText(text);
         // 发送邮件
         mailSender.send(simpleMailMessage);
-        log.info("JavaMailUtil类提示:---邮件已发送---");
+        System.out.println("---邮件已发送---");
     }
 
     /**
@@ -100,7 +100,7 @@ public class MailHelper {
         // 发送邮件
         mailSender.send(mimeMessage);
 
-        log.info("邮件已发送");
+        System.out.println("---邮件已发送---");
     }
 }
 ```
