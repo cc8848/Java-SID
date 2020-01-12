@@ -120,7 +120,7 @@ public class Mail extends Parent{
 ---
 
 
-## [demo-mybatis-generator](https://github.com/quaintclever/Java-SID/tree/master/demo-mybatis-generator)
+## [demo-mybatis](https://github.com/quaintclever/Java-SID/tree/master/demo-mybatis)
 
 ```java
 // Fake code, Just for entertainment
