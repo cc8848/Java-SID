@@ -1,4 +1,4 @@
-package com.quaint.demo.generator.po;
+package com.quaint.demo.mybatis.po;
 
 import java.math.BigDecimal;
 import java.util.Date;

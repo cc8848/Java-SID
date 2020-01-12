@@ -8,7 +8,7 @@
         <module>demo-elastic-search</module>
         <module>demo-mail</module>
         <module>demo-mybatis-plus</module>
-        <module>demo-mybatis-generator</module>
+        <module>demo-mybatis</module>
         <module>demo-wechat</module>
         <module>demo-security</module>
     </modules>

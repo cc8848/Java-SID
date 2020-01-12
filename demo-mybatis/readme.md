@@ -1,14 +1,53 @@
-## demo-mybatis-generator
+## demo-mybatis
 
 ## DESC:
 
  - spring 整合 mybatis
+ - generator 的使用
 
+---
 
-## 快速上手:
-
+## mybatis快速上手
 #### pom.xml
+```xml
+<dependencies>
+    <dependency>
+        <groupId>org.springframework.boot</groupId>
+        <artifactId>spring-boot-starter-jdbc</artifactId>
+    </dependency>
+    <dependency>
+        <groupId>mysql</groupId>
+        <artifactId>mysql-connector-java</artifactId>
+        <version>5.1.6</version>
+        <scope>runtime</scope>
+    </dependency>
+    <dependency>
+        <groupId>org.mybatis.spring.boot</groupId>
+        <artifactId>mybatis-spring-boot-starter</artifactId>
+        <version>1.3.1</version>
+    </dependency>
 
+</dependencies>
+```
+#### application.yml
+```yaml
+spring:
+  datasource:
+    name: demo-db
+    url: jdbc:mysql://127.0.0.1:3306/javasid
+    username: root
+    password: root
+    driver-class-name: com.mysql.jdbc.Driver
+#配置mybatis
+mybatis:
+  mapper-locations: classpath:mapper/*.xml
+  type-aliases-package: com.quaint.demo.mybatis
+```
+
+---
+
+## generator快速上手:
+#### pom.xml
 **src下的pom.xml文件**
 ```xml
 <dependencies>
@@ -23,7 +62,7 @@
 ```xml
 <build>
     <plugins>
-        <!-- mybatis generator 自动生成代码插件 -->
+        mybatis
         <plugin>
             <groupId>org.mybatis.generator</groupId>
             <artifactId>mybatis-generator-maven-plugin</artifactId>
@@ -37,9 +76,7 @@
     </plugins>
 </build>
 ```
-
 #### generatorConfig.xml
-
 **根据自己的maven仓库地址修改resources 下的 generator 下的配置文件**
 ```xml
 <generatorConfiguration>
@@ -53,9 +90,7 @@
 </generatorConfiguration>
 
 ```
-
-#### Idea 添加 Edit Configurations
-    
+#### Idea 添加 Edit Configurations 
 ```text
 name: generator
 working directory: 选择本项目

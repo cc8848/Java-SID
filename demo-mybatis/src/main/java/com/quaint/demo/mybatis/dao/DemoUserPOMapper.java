@@ -1,7 +1,9 @@
-package com.quaint.demo.generator.dao;
+package com.quaint.demo.mybatis.dao;
 
-import com.quaint.demo.generator.po.DemoUserPO;
+import com.quaint.demo.mybatis.po.DemoUserPO;
+import org.apache.ibatis.annotations.Mapper;
 
+@Mapper
 public interface DemoUserPOMapper {
     int deleteByPrimaryKey(Integer id);
 
