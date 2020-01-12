@@ -50,6 +50,7 @@ public class MybatisPlus extends Parent{
 | :---: | :---: |
 | mybatis-plus | 3.0-RC2 |
 | mysql | 6.0.6 |
+| jdbc | 2.1.2.RELEASE |
 | druid | 1.0.25 |
 | freemarker | 2.3.29 |
 
@@ -133,4 +134,6 @@ public class Mybatis extends Parent{
 | name | version |
 | :---: | :---: |
 | mysql | 5.1.6 |
+| mybatis | 1.3.1 |
+| jdbc | 2.1.2.RELEASE |
 
