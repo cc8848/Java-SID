@@ -1,11 +1,12 @@
 package com.quaint.demo.easy.excel.dto;
 
 import com.alibaba.excel.annotation.ExcelProperty;
-import com.quaint.demo.easy.excel.helper.LocalDateStringConverter;
+import com.quaint.demo.easy.excel.helper.LocalDateConverter;
 import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.EqualsAndHashCode;
 
+import java.math.BigDecimal;
 import java.time.LocalDate;
 import java.util.ArrayList;
 import java.util.List;
@@ -26,13 +27,13 @@ public class DemoUserDto extends DemoParentDto{
     private String sex;
 
     /**
-     * @see LocalDateStringConverter
+     * @see LocalDateConverter
      */
-    @ExcelProperty(value = "生日",converter = LocalDateStringConverter.class)
+    @ExcelProperty(value = "生日",converter = LocalDateConverter.class)
     private LocalDate birthday;
 
-    @ExcelProperty(value = {"年龄"})
-    private Integer age;
+    @ExcelProperty(value = {"存款"})
+    private BigDecimal money;
 
 
     /**
@@ -41,12 +42,12 @@ public class DemoUserDto extends DemoParentDto{
      */
     public static List<DemoUserDto> getUserDtoTest6(Object search){
         List<DemoUserDto> list = new ArrayList<>();
-        list.add(new DemoUserDto("quaint","男",LocalDate.of(2011,11,11),9));
-        list.add(new DemoUserDto("quaint2","女",LocalDate.of(2001,11,1),19));
-        list.add(new DemoUserDto("quaint3","男",LocalDate.of(2010,2,7),10));
-        list.add(new DemoUserDto("quaint4","男",LocalDate.of(2011,1,11),9));
-        list.add(new DemoUserDto("quaint5","女",LocalDate.of(2021,5,12),-1));
-        list.add(new DemoUserDto("quaint6","男",LocalDate.of(2010,7,11),10));
+        list.add(new DemoUserDto("quaint","男",LocalDate.of(2011,11,11),BigDecimal.ONE));
+        list.add(new DemoUserDto("quaint2","女",LocalDate.of(2001,11,1),BigDecimal.TEN));
+        list.add(new DemoUserDto("quaint3","男",LocalDate.of(2010,2,7),new BigDecimal(11.11)));
+        list.add(new DemoUserDto("quaint4","男",LocalDate.of(2011,1,11),new BigDecimal(10.24)));
+        list.add(new DemoUserDto("quaint5","女",LocalDate.of(2021,5,12),BigDecimal.ZERO));
+        list.add(new DemoUserDto("quaint6","男",LocalDate.of(2010,7,11),BigDecimal.TEN));
         return list;
     }
 

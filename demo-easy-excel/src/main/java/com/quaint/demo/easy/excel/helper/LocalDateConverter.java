@@ -14,7 +14,7 @@ import java.time.format.DateTimeFormatter;
  *
  * @author quait
  */
-public class LocalDateStringConverter implements Converter<LocalDate> {
+public class LocalDateConverter implements Converter<LocalDate> {
 
     @Override
     public Class supportJavaTypeKey() {

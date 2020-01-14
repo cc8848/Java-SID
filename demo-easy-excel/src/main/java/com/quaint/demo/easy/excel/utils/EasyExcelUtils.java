@@ -25,7 +25,6 @@ public abstract class EasyExcelUtils {
      * @param fileName 导出的文件名
      * @param excludeFiledNames 要排除的filed
      * @param <T> 模板
-     * @throws IOException io
      */
     public static <T> void exportWebExcel(HttpServletResponse response, List<T> dataList, Class<T> clazz,
                                  String fileName, Set<String> excludeFiledNames) {
@@ -54,7 +53,6 @@ public abstract class EasyExcelUtils {
      * @param fileName 导出的文件名
      * @param excludeFiledNames 要排除的filed
      * @param <T> 模板
-     * @throws IOException io
      */
     public static <T> void exportLocalExcel(List<T> dataList, Class<T> clazz, String fileName,
                                             Set<String> excludeFiledNames){
