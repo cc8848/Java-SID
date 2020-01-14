@@ -30,13 +30,23 @@ public class LocalDateConverter implements Converter<LocalDate> {
     public LocalDate convertToJavaData(CellData cellData, ExcelContentProperty contentProperty,
                                        GlobalConfiguration globalConfiguration){
         // 将excel 中的 数据 转换为 LocalDate
-        return LocalDate.parse(cellData.getStringValue(), DateTimeFormatter.ISO_LOCAL_DATE);
+        if (contentProperty == null || contentProperty.getDateTimeFormatProperty() == null) {
+            return LocalDate.parse(cellData.getStringValue(), DateTimeFormatter.ISO_LOCAL_DATE);
+        } else {
+            // 获取注解的 format  注意,注解需要导入这个 excel.annotation.format.DateTimeFormat;
+            return LocalDate.parse(cellData.getStringValue(),
+                    DateTimeFormatter.ofPattern(contentProperty.getDateTimeFormatProperty().getFormat()));
+        }
     }
 
     @Override
     public CellData convertToExcelData(LocalDate value, ExcelContentProperty contentProperty,
                                        GlobalConfiguration globalConfiguration) {
-        // 将 LocalDate 转换为 String
-        return new CellData(value.toString());
+        // 将 LocalDateTime 转换为 String
+        if (contentProperty == null || contentProperty.getDateTimeFormatProperty() == null) {
+            return new CellData(value.toString());
+        } else {
+            return new CellData(value.format(DateTimeFormatter.ofPattern(contentProperty.getDateTimeFormatProperty().getFormat())));
+        }
     }
 }

@@ -1,6 +1,7 @@
 package com.quaint.demo.easy.excel.dto;
 
 import com.alibaba.excel.annotation.ExcelProperty;
+import com.alibaba.excel.annotation.format.DateTimeFormat;
 import com.quaint.demo.easy.excel.helper.LocalDateConverter;
 import lombok.AllArgsConstructor;
 import lombok.Data;
@@ -12,6 +13,11 @@ import java.util.ArrayList;
 import java.util.List;
 
 /**
+ *
+ * 虽然 OrderMap 可以完全复用 ReviewMap 的字段,
+ * 但是 继承后 导出excel 顺序会有先子类,后父类问题,
+ * 而且反射还需要读取父类忽略的属性,这里做了尝试样例
+ *
  * @author quaint
  * @date 2020-01-14 11:20
  */
@@ -30,6 +36,7 @@ public class DemoUserDto extends DemoParentDto{
      * @see LocalDateConverter
      */
     @ExcelProperty(value = "生日",converter = LocalDateConverter.class)
+    @DateTimeFormat("yyyy年MM月dd日")
     private LocalDate birthday;
 
     @ExcelProperty(value = {"存款"})
