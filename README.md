@@ -56,6 +56,23 @@ public class MybatisPlus extends Parent{
 
 ---
 
+## [demo-easy-excel](https://github.com/quaintclever/Java-SID/tree/master/demo-easy-excel)
+
+```java
+// Fake code, Just for entertainment
+public class EasyExcel extends Parent{
+    private Stream<String> child = Files.lines(Paths.get("module/pom.xml"));
+    { consumer.accpt(child); }
+}
+```
+
+| name | version |
+| :---: | :---: |
+| easyexcel | 2.1.4 |
+| thymeleaf | 2.1.2.RELEASE |
+
+---
+
 ## [demo-security](https://github.com/quaintclever/Java-SID/tree/master/demo-security)
 
 ```java

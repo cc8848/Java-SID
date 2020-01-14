@@ -11,6 +11,7 @@
         <module>demo-mybatis</module>
         <module>demo-wechat</module>
         <module>demo-security</module>
+        <module>demo-easy-excel</module>
     </modules>
 
     <!-- 父工程 -->

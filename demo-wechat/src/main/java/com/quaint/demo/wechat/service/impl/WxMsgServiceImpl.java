@@ -1,7 +1,6 @@
 package com.quaint.demo.wechat.service.impl;
 
 import cn.binarywang.wx.miniapp.api.WxMaService;
-import cn.binarywang.wx.miniapp.bean.WxMaTemplateData;
 import cn.binarywang.wx.miniapp.bean.WxMaTemplateMessage;
 import com.google.gson.GsonBuilder;
 import com.quaint.demo.wechat.config.helper.JsonExclusionStrategy;
