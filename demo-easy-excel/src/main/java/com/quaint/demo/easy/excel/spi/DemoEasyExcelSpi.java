@@ -20,22 +20,17 @@ import java.util.concurrent.atomic.AtomicInteger;
 @Controller
 public class DemoEasyExcelSpi {
 
-    /**
-     * 读取 local 上传的文件
-     * List<DemoUserDto> demoUserDtos = EasyExcelUtils.readLocalExcel("ExcelTest", DemoUserDto.class);
-     * @param inExcel web Excel
-     * @param model 返回给前端model
-     * @return page
-     */
     @PostMapping("/in/excel")
     public String inExcel(@RequestParam("inExcel") MultipartFile inExcel, Model model){
 
         if (inExcel.isEmpty()){
-            model.addAttribute("users", null);
+            // 读取 local 指定文件
+            List<DemoUserDto> demoUserList = EasyExcelUtils.readLocalExcel("ExcelTest", DemoUserDto.class);
+            model.addAttribute("users", demoUserList);
         } else {
             // 读取 web 上传的文件
-            List<DemoUserDto> demoUserDtos = EasyExcelUtils.readWebExcel(inExcel, DemoUserDto.class);
-            model.addAttribute("users", demoUserDtos);
+            List<DemoUserDto> demoUserList = EasyExcelUtils.readWebExcel(inExcel, DemoUserDto.class);
+            model.addAttribute("users", demoUserList);
         }
         return "index";
     }
@@ -72,7 +67,7 @@ public class DemoEasyExcelSpi {
         // 创建本地文件
         EasyExcelUtils.exportLocalExcel(userDto,DemoUserDto.class,"ExcelTest",excludeFiledNames);
         // 创建web文件
-//        EasyExcelUtils.exportWebExcel(response,userDto,DemoUserDto.class,"ExcelTest",null);
+        EasyExcelUtils.exportWebExcel(response,userDto,DemoUserDto.class,"ExcelTest",null);
 
     }
 }
