@@ -1,4 +1,4 @@
-package com.quaint.demo.wechat.config.helper;
+package com.quaint.demo.wechat.helper;
 
 import cn.binarywang.wx.miniapp.api.WxMaService;
 import cn.binarywang.wx.miniapp.api.impl.WxMaServiceImpl;
@@ -19,11 +19,14 @@ import java.util.List;
 import java.util.concurrent.atomic.AtomicBoolean;
 
 /**
- * 微信服务注册, 从数据库查询出 配置信息
+ * 微信服务注册, 从数据库查询出配置信息
+ * Demo 无需使用, 多渠道解决方案
+ *
  * @author quaint
  * @date 2020-01-06 13:49
  */
 @Configuration
+@Deprecated
 public class WxServiceRegistry implements ApplicationListener<ContextRefreshedEvent> {
 
 

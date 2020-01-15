@@ -10,7 +10,7 @@ import org.springframework.web.bind.annotation.RequestBody;
  * @author quaint
  * @date 2020-01-07 15:05
  */
-public interface WxMsgService {
+public interface DemoWxMsgService {
 
     /**
      * 发送公证号 模板消息

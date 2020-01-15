@@ -1,9 +1,11 @@
 package com.quaint.demo.wechat.enums;
 
 /**
+ * 多渠道 类型 枚举
  * @author quaint
  * @date 2020-01-07 14:04
  */
+@Deprecated
 public enum WxTypeEnum {
 
     /**

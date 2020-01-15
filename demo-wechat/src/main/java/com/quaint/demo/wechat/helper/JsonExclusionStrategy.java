@@ -1,4 +1,4 @@
-package com.quaint.demo.wechat.config.helper;
+package com.quaint.demo.wechat.helper;
 
 import com.google.gson.ExclusionStrategy;
 import com.google.gson.FieldAttributes;

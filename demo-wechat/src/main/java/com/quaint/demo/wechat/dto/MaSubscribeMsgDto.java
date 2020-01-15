@@ -1,7 +1,7 @@
 package com.quaint.demo.wechat.dto;
 
 import cn.binarywang.wx.miniapp.bean.WxMaTemplateData;
-import com.quaint.demo.wechat.config.helper.WxServiceContainer;
+import com.quaint.demo.wechat.helper.WxServiceContainer;
 import io.swagger.annotations.ApiModelProperty;
 import lombok.Data;
 
@@ -20,7 +20,8 @@ public class MaSubscribeMsgDto {
     /**
      * @see WxServiceContainer
      */
-    @ApiModelProperty("渠道")
+    @ApiModelProperty("渠道 Demo 请忽略")
+    @Deprecated
     private Integer channel;
 
     @ApiModelProperty(value = "模板Id",required = true)

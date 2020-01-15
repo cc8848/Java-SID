@@ -11,6 +11,7 @@ import com.quaint.demo.wechat.po.DemoWxChannelPO;
  * @author quaint
  * @since 2020-01-06
  */
+@Deprecated
 public interface DemoWxChannelMapper extends BaseMapper<DemoWxChannelPO> {
 
 }

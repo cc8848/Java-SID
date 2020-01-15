@@ -23,6 +23,7 @@ import java.time.LocalDateTime;
 @EqualsAndHashCode(callSuper = false)
 @Accessors(chain = true)
 @TableName("demo_wx_channel")
+@Deprecated
 public class DemoWxChannelPO implements Serializable {
 
     private static final long serialVersionUID = 1L;

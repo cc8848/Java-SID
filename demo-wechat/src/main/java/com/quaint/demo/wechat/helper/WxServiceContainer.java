@@ -1,6 +1,7 @@
-package com.quaint.demo.wechat.config.helper;
+package com.quaint.demo.wechat.helper;
 
 import cn.binarywang.wx.miniapp.api.WxMaService;
+import com.quaint.demo.wechat.enums.WxTypeEnum;
 import me.chanjar.weixin.mp.api.WxMpService;
 import org.springframework.stereotype.Component;
 
@@ -11,10 +12,24 @@ import java.util.Optional;
 
 /**
  * 微信服务 容器
+ *
+ * Demo 无需使用, 多渠道解决方案
+ * 快速上手:
+ *
+ * Service 中 注入 微信服务 容器
+ * @Autowired
+ * WxServiceContainer wxServiceContainer;
+ *
+ * 根据不同类型,获取不同的 service
+ * @see WxTypeEnum
+ * WxMpService wxMpService = wxServiceContainer.getWxMpService(param.getChannel()).orElseThrow(Exception::new);
+ * WxMaService wxMaService = wxServiceContainer.getWxMaService(param.getChannel()).orElseThrow(Exception::new);
+ *
  * @author quaint
  * @date 2020-01-06 11:44
  */
 @Component
+@Deprecated
 public class WxServiceContainer {
 
     /**

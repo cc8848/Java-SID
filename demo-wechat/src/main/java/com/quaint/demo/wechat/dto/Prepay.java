@@ -24,12 +24,15 @@ public interface Prepay {
         private BigDecimal amount;
         // 用户标识(微信对应openId)
         private String userId;
+        // 商品简单描述
+        private String body;
     }
 
     @ApiModel("预支付响应")
     @Data
     @Builder
     class Response{
+
         // 预支付id
         private String prepayId;
         // 原始报文

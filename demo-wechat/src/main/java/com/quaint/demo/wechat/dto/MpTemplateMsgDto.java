@@ -1,6 +1,6 @@
 package com.quaint.demo.wechat.dto;
 
-import com.quaint.demo.wechat.config.helper.WxServiceContainer;
+import com.quaint.demo.wechat.helper.WxServiceContainer;
 import io.swagger.annotations.ApiModel;
 import io.swagger.annotations.ApiModelProperty;
 import lombok.Data;
@@ -22,7 +22,8 @@ public class MpTemplateMsgDto {
     /**
      * @see WxServiceContainer
      */
-    @ApiModelProperty("渠道")
+    @ApiModelProperty("渠道-多渠道时 使用; demo 无需使用")
+    @Deprecated
     private Integer channel;
 
     @ApiModelProperty(value = "模板Id",required = true)
