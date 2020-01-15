@@ -1,19 +1,24 @@
 package com.quaint.demo.wechat.service.impl;
 
 import cn.binarywang.wx.miniapp.api.WxMaService;
+import cn.binarywang.wx.miniapp.api.WxMaUserService;
 import cn.binarywang.wx.miniapp.api.impl.WxMaServiceImpl;
+import cn.binarywang.wx.miniapp.bean.WxMaJscode2SessionResult;
 import cn.binarywang.wx.miniapp.bean.WxMaTemplateMessage;
+import cn.binarywang.wx.miniapp.bean.WxMaUserInfo;
 import cn.binarywang.wx.miniapp.config.WxMaInMemoryConfig;
 import com.google.gson.Gson;
 import com.google.gson.GsonBuilder;
 import com.quaint.demo.wechat.config.WxProperties;
 import com.quaint.demo.wechat.constant.WxUrlConstant;
+import com.quaint.demo.wechat.dto.DemoWxAuthLogin;
 import com.quaint.demo.wechat.dto.MaSubscribeMsgDto;
 import com.quaint.demo.wechat.dto.MaTemplateMsgDto;
 import com.quaint.demo.wechat.dto.MpTemplateMsgDto;
 import com.quaint.demo.wechat.helper.JsonExclusionStrategy;
-import com.quaint.demo.wechat.service.DemoWxMsgService;
+import com.quaint.demo.wechat.service.DemoWxService;
 import lombok.extern.slf4j.Slf4j;
+import me.chanjar.weixin.common.error.WxErrorException;
 import me.chanjar.weixin.mp.api.WxMpInMemoryConfigStorage;
 import me.chanjar.weixin.mp.api.WxMpService;
 import me.chanjar.weixin.mp.api.impl.WxMpServiceImpl;
@@ -32,7 +37,7 @@ import java.util.Collections;
 @Service
 @Slf4j
 @EnableConfigurationProperties(WxProperties.class)
-public class DemoWxMsgServiceImpl implements DemoWxMsgService {
+public class DemoWxServiceImpl implements DemoWxService {
 
     @Autowired
     private WxProperties wxProperties;
@@ -64,6 +69,19 @@ public class DemoWxMsgServiceImpl implements DemoWxMsgService {
         wxMpService.setWxMpConfigStorage(configStorage);
     }
 
+
+    @Override
+    public WxMaUserInfo getWxMaUserInfo(DemoWxAuthLogin.Param param) throws WxErrorException {
+        WxMaUserService userService = wxMaService.getUserService();
+        WxMaJscode2SessionResult sessionInfo = userService.getSessionInfo(param.getCode());
+        return userService.getUserInfo(sessionInfo.getSessionKey(), param.getEncryptedData(), param.getIvStr());
+    }
+
+    @Override
+    public WxMaJscode2SessionResult wxDefaultLogin(DemoWxAuthLogin.Param param) throws WxErrorException {
+        WxMaUserService userService = wxMaService.getUserService();
+        return userService.getSessionInfo(param.getCode());
+    }
 
     @Override
     public boolean sendMpTempMsg(MpTemplateMsgDto param) {

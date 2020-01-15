@@ -1,8 +1,12 @@
 package com.quaint.demo.wechat.service;
 
+import cn.binarywang.wx.miniapp.bean.WxMaJscode2SessionResult;
+import cn.binarywang.wx.miniapp.bean.WxMaUserInfo;
+import com.quaint.demo.wechat.dto.DemoWxAuthLogin;
 import com.quaint.demo.wechat.dto.MaSubscribeMsgDto;
 import com.quaint.demo.wechat.dto.MaTemplateMsgDto;
 import com.quaint.demo.wechat.dto.MpTemplateMsgDto;
+import me.chanjar.weixin.common.error.WxErrorException;
 import org.springframework.web.bind.annotation.RequestBody;
 
 /**
@@ -10,7 +14,24 @@ import org.springframework.web.bind.annotation.RequestBody;
  * @author quaint
  * @date 2020-01-07 15:05
  */
-public interface DemoWxMsgService {
+public interface DemoWxService {
+
+
+    /**
+     * 用户授权, 获取用户信息
+     * @param param 入参
+     * @return 微信相关用户信息
+     * @throws WxErrorException wx error
+     */
+    WxMaUserInfo getWxMaUserInfo(DemoWxAuthLogin.Param param) throws WxErrorException;
+
+    /**
+     * 用户静默授权登录
+     * @param param 入参
+     * @return 简要用户信息 openid sessionKey unionid
+     * @throws WxErrorException wx error
+     */
+    WxMaJscode2SessionResult wxDefaultLogin(DemoWxAuthLogin.Param param) throws WxErrorException;
 
     /**
      * 发送公证号 模板消息
