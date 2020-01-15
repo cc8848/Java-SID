@@ -30,9 +30,13 @@ public class DemoEasyExcelSpi {
     @PostMapping("/in/excel")
     public String inExcel(@RequestParam("inExcel") MultipartFile inExcel, Model model){
 
-        // 读取 web 上传的文件
-        List<DemoUserDto> demoUserDtos = EasyExcelUtils.readWebExcel(inExcel, DemoUserDto.class);
-        model.addAttribute("users", demoUserDtos);
+        if (inExcel.isEmpty()){
+            model.addAttribute("users", null);
+        } else {
+            // 读取 web 上传的文件
+            List<DemoUserDto> demoUserDtos = EasyExcelUtils.readWebExcel(inExcel, DemoUserDto.class);
+            model.addAttribute("users", demoUserDtos);
+        }
         return "index";
     }
 
