@@ -3,8 +3,11 @@ package com.quaint.demo.easy.excel.spi;
 import com.alibaba.excel.annotation.ExcelProperty;
 import com.quaint.demo.easy.excel.dto.DemoUserDto;
 import com.quaint.demo.easy.excel.utils.EasyExcelUtils;
+import org.springframework.stereotype.Controller;
+import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.RequestParam;
+import org.springframework.web.multipart.MultipartFile;
 
 import javax.servlet.http.HttpServletResponse;
 import java.util.*;
@@ -14,13 +17,29 @@ import java.util.concurrent.atomic.AtomicInteger;
  * @author quaint
  * @date 2020-01-14 11:13
  */
-@RestController
+@Controller
 public class DemoEasyExcelSpi {
+
+    /**
+     * 读取 local 上传的文件
+     * List<DemoUserDto> demoUserDtos = EasyExcelUtils.readLocalExcel("ExcelTest", DemoUserDto.class);
+     * @param inExcel web Excel
+     * @param model 返回给前端model
+     * @return page
+     */
+    @PostMapping("/in/excel")
+    public String inExcel(@RequestParam("inExcel") MultipartFile inExcel, Model model){
+
+        // 读取 web 上传的文件
+        List<DemoUserDto> demoUserDtos = EasyExcelUtils.readWebExcel(inExcel, DemoUserDto.class);
+        model.addAttribute("users", demoUserDtos);
+        return "index";
+    }
 
     @PostMapping("/out/excel")
     public void export(HttpServletResponse response){
 
-        Object search = "@RequestBody Object search";
+        String search = "@RequestBody Object search";
         // 根据前端传入的查询条件 去库里查到要导出的dto
         List<DemoUserDto> userDto = DemoUserDto.getUserDtoTest6(search);
         // 要忽略的 字段

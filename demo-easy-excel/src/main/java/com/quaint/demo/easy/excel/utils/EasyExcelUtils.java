@@ -2,6 +2,8 @@ package com.quaint.demo.easy.excel.utils;
 
 import com.alibaba.excel.EasyExcel;
 import com.quaint.demo.easy.excel.handler.CustomCellWriteHandler;
+import com.quaint.demo.easy.excel.listener.DemoUserListener;
+import org.springframework.web.multipart.MultipartFile;
 
 import javax.servlet.http.HttpServletResponse;
 import java.io.File;
@@ -16,6 +18,47 @@ import java.util.Set;
  */
 public abstract class EasyExcelUtils {
 
+
+    /**
+     * 读取 local excel demo
+     * @param fileName 本地文件名称
+     * @param clazz 指定转化类
+     * @param <T> 转化类泛型
+     * @return 本地导入的数据
+     */
+    public static <T> List<T> readLocalExcel(String fileName, Class<T> clazz){
+
+        // 有个很重要的点 DemoDataListener 不能被spring管理，要每次读取excel都要new,然后里面用到spring可以构造方法传进去
+        String filePath = System.getProperty("user.dir")+"/demo-easy-excel/src/main/resources/"+fileName+".xlsx";
+        // 这里 需要指定读用哪个class去读，然后读取第一个sheet 文件流会自动关闭
+        DemoUserListener demoUserListener = new DemoUserListener();
+        try {
+            EasyExcel.read(filePath, clazz,demoUserListener).sheet().doRead();
+            return (List<T>) demoUserListener.getVirtualDataBase();
+        } catch (Exception e) {
+            e.printStackTrace();
+            return null;
+        }
+    }
+
+    /**
+     * 读取web excel demo
+     * @param file web 文件
+     * @param clazz 指定转化类
+     * @param <T> 类的泛型
+     * @return web导入的数据
+     */
+    public static <T> List<T> readWebExcel(MultipartFile file, Class<T> clazz){
+
+        DemoUserListener demoUserListener = new DemoUserListener();
+        try {
+            EasyExcel.read(file.getInputStream(), clazz, demoUserListener).sheet().doRead();
+            return (List<T>) demoUserListener.getVirtualDataBase();
+        } catch (IOException e) {
+            e.printStackTrace();
+            return null;
+        }
+    }
 
     /**
      * 导出excel

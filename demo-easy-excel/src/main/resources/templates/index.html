@@ -12,10 +12,13 @@
 </style>
 <body>
 
-    <button th:action="@{/in/excel}">导入</button>
+    <form th:action="@{/in/excel}" method="post" enctype="multipart/form-data">
+        <input name="inExcel" type="file" value="上传文件"/>
+        <input type="submit" value="导入excel"/>
+    </form>
     <h2>导入的数据展示位置:</h2>
-    <div class="data-local">
-        <span>--</span>
+    <div class="data-local" th:each="user : ${users}">
+        <span th:text="${user}"></span>
     </div>
 
     <form th:action="@{/out/excel}" method="post">

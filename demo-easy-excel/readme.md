@@ -10,6 +10,7 @@
 
 ```xml
 <dependencies>
+    <!-- spring 等公用部分由 父工程提供, 这里仅展示核心 -->
     <!-- https://mvnrepository.com/artifact/com.alibaba/easyexcel -->
     <dependency>
         <groupId>com.alibaba</groupId>
