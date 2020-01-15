@@ -7,7 +7,6 @@ import com.quaint.demo.wechat.dto.MaSubscribeMsgDto;
 import com.quaint.demo.wechat.dto.MaTemplateMsgDto;
 import com.quaint.demo.wechat.dto.MpTemplateMsgDto;
 import me.chanjar.weixin.common.error.WxErrorException;
-import org.springframework.web.bind.annotation.RequestBody;
 
 /**
  * 微信一次订阅消息 服务
