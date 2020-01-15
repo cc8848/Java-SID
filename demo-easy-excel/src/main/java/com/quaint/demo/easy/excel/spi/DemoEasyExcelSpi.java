@@ -53,7 +53,7 @@ public class DemoEasyExcelSpi {
             Arrays.stream(clazz.getDeclaredFields()).forEach(field -> {
                 ExcelProperty ann = field.getAnnotation(ExcelProperty.class);
                 if (ann!=null && ignoreIndices.contains(ann.value()[0])){
-                    // json 忽略 该字段
+                    // 忽略 该字段
                     excludeFiledNames.add(field.getName());
                 }
             });

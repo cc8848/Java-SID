@@ -4,6 +4,10 @@
 
  - spring integration easy excel
 
+## 官方链接
+
+https://alibaba-easyexcel.github.io/index.html
+
 ## 快速上手:
 
 #### pom.xml
@@ -296,7 +300,7 @@ public class DemoEasyExcelSpi {
             Arrays.stream(clazz.getDeclaredFields()).forEach(field -> {
                 ExcelProperty ann = field.getAnnotation(ExcelProperty.class);
                 if (ann!=null && ignoreIndices.contains(ann.value()[0])){
-                    // json 忽略 该字段
+                    // 忽略 该字段
                     excludeFiledNames.add(field.getName());
                 }
             });
