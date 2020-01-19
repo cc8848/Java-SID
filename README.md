@@ -23,7 +23,7 @@ public class Parent{
         .forEach(System.out::printf);
         
     // Code block, execution consumer.
-    { consumer.accpt(parent); }
+    { consumer.accept(parent); }
 }
 ```
 
@@ -42,7 +42,7 @@ public class Parent{
 // Fake code, Just for entertainment
 public class MybatisPlus extends Parent{
     private Stream<String> child = Files.lines(Paths.get("module/pom.xml"));
-    { consumer.accpt(child); }
+    { consumer.accept(child); }
 }
 ```
 
@@ -62,7 +62,7 @@ public class MybatisPlus extends Parent{
 // Fake code, Just for entertainment
 public class EasyExcel extends Parent{
     private Stream<String> child = Files.lines(Paths.get("module/pom.xml"));
-    { consumer.accpt(child); }
+    { consumer.accept(child); }
 }
 ```
 
@@ -79,7 +79,7 @@ public class EasyExcel extends Parent{
 // Fake code, Just for entertainment
 public class Security extends Parent{
     private Stream<String> child = Files.lines(Paths.get("module/pom.xml"));
-    { consumer.accpt(child); }
+    { consumer.accept(child); }
 }
 ```
 
@@ -96,7 +96,7 @@ public class Security extends Parent{
 // Fake code, Just for entertainment
 public class WeChat extends MybatisPlus{
     private Stream<String> child = Files.lines(Paths.get("module/pom.xml"));
-    { consumer.accpt(child); }
+    { consumer.accept(child); }
 }
 ```
 
@@ -115,7 +115,7 @@ public class WeChat extends MybatisPlus{
 // Fake code, Just for entertainment
 public class ElasticSearch extends MybatisPlus{
     private Stream<String> child = Files.lines(Paths.get("module/pom.xml"));
-    { consumer.accpt(child); }
+    { consumer.accept(child); }
 }
 ```
 
@@ -143,7 +143,7 @@ springboot version comparison elasticsearch list:
 // Fake code, Just for entertainment
 public class Mail extends Parent{
     private Stream<String> child = Files.lines(Paths.get("module/pom.xml"));
-    { consumer.accpt(child); }
+    { consumer.accept(child); }
 }
 ```
 
@@ -161,7 +161,7 @@ public class Mail extends Parent{
 // Fake code, Just for entertainment
 public class Mybatis extends Parent{
     private Stream<String> child = Files.lines(Paths.get("module/pom.xml"));
-    { consumer.accpt(child); }
+    { consumer.accept(child); }
 }
 ```
 
