@@ -8,9 +8,12 @@ import com.alibaba.excel.write.metadata.holder.WriteTableHolder;
 import lombok.extern.slf4j.Slf4j;
 import org.apache.poi.ss.usermodel.Cell;
 import org.apache.poi.ss.usermodel.Row;
+import org.springframework.context.annotation.Scope;
 import org.springframework.stereotype.Component;
 
 import java.util.List;
+
+import static org.springframework.beans.factory.config.BeanDefinition.SCOPE_PROTOTYPE;
 
 /**
  * 自定义拦截器。对第一行第一列的头超链接到:https://github.com/alibaba/easyexcel
@@ -19,6 +22,7 @@ import java.util.List;
  */
 @Slf4j
 @Component
+@Scope(SCOPE_PROTOTYPE)
 public class CustomCellWriteHandler implements CellWriteHandler {
 
 

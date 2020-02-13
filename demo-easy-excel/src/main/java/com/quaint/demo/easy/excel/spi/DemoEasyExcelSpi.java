@@ -1,8 +1,15 @@
 package com.quaint.demo.easy.excel.spi;
 
+import com.alibaba.excel.EasyExcel;
 import com.alibaba.excel.annotation.ExcelProperty;
 import com.quaint.demo.easy.excel.dto.DemoUserDto;
+import com.quaint.demo.easy.excel.listener.DemoUserListener;
 import com.quaint.demo.easy.excel.utils.EasyExcelUtils;
+import lombok.extern.slf4j.Slf4j;
+import org.springframework.beans.BeansException;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.context.ApplicationContext;
+import org.springframework.context.ApplicationContextAware;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.PostMapping;
@@ -10,6 +17,7 @@ import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.multipart.MultipartFile;
 
 import javax.servlet.http.HttpServletResponse;
+import java.io.IOException;
 import java.util.*;
 import java.util.concurrent.atomic.AtomicInteger;
 
@@ -18,20 +26,53 @@ import java.util.concurrent.atomic.AtomicInteger;
  * @date 2020-01-14 11:13
  */
 @Controller
-public class DemoEasyExcelSpi {
+@Slf4j
+public class DemoEasyExcelSpi implements ApplicationContextAware {
+
+    private ApplicationContext applicationContext;
+
+    @Override
+    public void setApplicationContext(ApplicationContext applicationContext) throws BeansException {
+        this.applicationContext = applicationContext;
+    }
+
 
     @PostMapping("/in/excel")
     public String inExcel(@RequestParam("inExcel") MultipartFile inExcel, Model model){
 
+        DemoUserListener demoUserListener = applicationContext.getBean(DemoUserListener.class);
+
+        log.info("demoUserListener 在 spi 调用之前 hashCode为 [{}]", demoUserListener.hashCode());
+
         if (inExcel.isEmpty()){
             // 读取 local 指定文件
-            List<DemoUserDto> demoUserList = EasyExcelUtils.readLocalExcel("ExcelTest", DemoUserDto.class);
+            List<DemoUserDto> demoUserList;
+            String filePath = System.getProperty("user.dir")+"/demo-easy-excel/src/main/resources/ExcelTest.xlsx";
+            try {
+                // 这里 需要指定读用哪个class去读，然后读取第一个sheet 文件流会自动关闭
+                EasyExcel.read(filePath, DemoUserDto.class, demoUserListener).sheet().doRead();
+                demoUserList = demoUserListener.getVirtualDataBase();
+
+            } catch (Exception e) {
+                e.printStackTrace();
+                return null;
+            }
+
             model.addAttribute("users", demoUserList);
+
         } else {
             // 读取 web 上传的文件
-            List<DemoUserDto> demoUserList = EasyExcelUtils.readWebExcel(inExcel, DemoUserDto.class);
+            List<DemoUserDto> demoUserList;
+            try {
+                EasyExcel.read(inExcel.getInputStream(), DemoUserDto.class, demoUserListener).sheet().doRead();
+                demoUserList = demoUserListener.getVirtualDataBase();
+            } catch (IOException e) {
+                e.printStackTrace();
+                return null;
+            }
             model.addAttribute("users", demoUserList);
         }
+        log.info("demoUserListener 在 spi 调用之后 hashCode为 [{}]", demoUserListener.hashCode());
         return "index";
     }
 
@@ -70,4 +111,6 @@ public class DemoEasyExcelSpi {
         EasyExcelUtils.exportWebExcel(response,userDto,DemoUserDto.class,"ExcelTest",null);
 
     }
+
+
 }

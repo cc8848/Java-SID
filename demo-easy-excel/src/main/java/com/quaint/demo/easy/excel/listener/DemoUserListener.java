@@ -9,17 +9,25 @@ import com.quaint.demo.easy.excel.dto.DemoUserDto;
 import lombok.Data;
 import lombok.EqualsAndHashCode;
 import lombok.extern.slf4j.Slf4j;
+import org.springframework.context.annotation.Scope;
+import org.springframework.stereotype.Component;
 
 import java.util.ArrayList;
 import java.util.List;
 
+import static org.springframework.beans.factory.config.BeanDefinition.SCOPE_PROTOTYPE;
+
 /**
- * 有个很重要的点 DemoDataListener 不能被spring管理，要每次读取excel都要new,然后里面用到spring可以构造方法传进去
+ * 官方提示:有个很重要的点 DemoDataListener 不能被spring管理，要每次读取excel都要new,然后里面用到spring可以构造方法传进去
+ *
+ * 如果想被spring 管理的话, 改为原型模式, Controller 以 getBean 形式获取
  * @author quaint
  */
 @EqualsAndHashCode(callSuper = true)
 @Slf4j
 @Data
+@Scope(SCOPE_PROTOTYPE)
+@Component
 public class DemoUserListener extends AnalysisEventListener<DemoUserDto> {
 
     /**
