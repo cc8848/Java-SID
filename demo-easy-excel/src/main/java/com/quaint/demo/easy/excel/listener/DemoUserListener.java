@@ -12,6 +12,7 @@ import lombok.extern.slf4j.Slf4j;
 import org.springframework.context.annotation.Scope;
 import org.springframework.stereotype.Component;
 
+import javax.annotation.Resource;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -38,10 +39,22 @@ public class DemoUserListener extends AnalysisEventListener<DemoUserDto> {
     private List<DemoUserDto> list = new ArrayList<>();
 
     /**
-     * 虚拟数据库
+     * 方式一
+     *  可以换成 @Autowired 注入 service 或者mapper
+     *  不被spring管理的话  使用构造函数 接收外面被spring管理的mapper -->constructor
+     * @Autowired
+     * DemoUserMapper demoUserMapper;
      */
     private List<DemoUserDto> virtualDataBase = new ArrayList<>();
 
+    /**
+     * 方式二
+     * 假设 virtualDataBase 是 mapper, 这里就在外面new该类的时候传进来  调用方注入过得mapper
+     * @param virtualDataBase
+     */
+//    public DemoUserListener(List<DemoUserDto> virtualDataBase) {
+//        this.virtualDataBase = virtualDataBase;
+//    }
 
     /**
      * 这个每一条数据解析都会来调用
