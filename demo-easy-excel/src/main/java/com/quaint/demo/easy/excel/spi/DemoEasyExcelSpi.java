@@ -2,10 +2,15 @@ package com.quaint.demo.easy.excel.spi;
 
 import com.alibaba.excel.EasyExcel;
 import com.alibaba.excel.annotation.ExcelProperty;
+import com.alibaba.excel.write.metadata.style.WriteCellStyle;
+import com.alibaba.excel.write.metadata.style.WriteFont;
+import com.alibaba.excel.write.style.HorizontalCellStyleStrategy;
 import com.quaint.demo.easy.excel.dto.DemoUserDto;
 import com.quaint.demo.easy.excel.listener.DemoUserListener;
 import com.quaint.demo.easy.excel.utils.EasyExcelUtils;
 import lombok.extern.slf4j.Slf4j;
+import org.apache.poi.ss.usermodel.FillPatternType;
+import org.apache.poi.ss.usermodel.IndexedColors;
 import org.springframework.beans.BeansException;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.ApplicationContext;

@@ -1,12 +1,19 @@
 package com.quaint.demo.easy.excel.utils;
 
 import com.alibaba.excel.EasyExcel;
+import com.alibaba.excel.write.metadata.style.WriteCellStyle;
+import com.alibaba.excel.write.metadata.style.WriteFont;
 import com.quaint.demo.easy.excel.handler.CustomCellWriteHandler;
+import com.quaint.demo.easy.excel.handler.ProductWriteErrHandler;
+import org.apache.poi.ss.usermodel.FillPatternType;
+import org.apache.poi.ss.usermodel.IndexedColors;
 
 import javax.servlet.http.HttpServletResponse;
 import java.io.File;
 import java.io.IOException;
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 import java.util.Set;
 
 /**
@@ -34,10 +41,23 @@ public abstract class EasyExcelUtils {
         response.setCharacterEncoding("utf-8");
         response.setHeader("Content-disposition", "attachment;filename=" + fileName + ".xlsx");
 
+        // 单元格样式策略 定义
+        WriteCellStyle style = new WriteCellStyle();
+        // 这里需要指定 FillPatternType 为FillPatternType.SOLID_FOREGROUND 不然无法显示背景颜色.头默认了 FillPatternType所以可以不指定
+        style.setFillPatternType(FillPatternType.SOLID_FOREGROUND);
+        style.setFillForegroundColor(IndexedColors.RED.getIndex());
+
+        Map<Integer,Integer> errRecord = new HashMap<>();
+        errRecord.put(1,1);
+        errRecord.put(2,2);
+        ProductWriteErrHandler handler = new ProductWriteErrHandler(style,errRecord);
+
+
         try {
             // 导出excel
             EasyExcel.write(response.getOutputStream(), clazz)
                     .excludeColumnFiledNames(excludeFiledNames)
+                    .registerWriteHandler(handler)
                     .sheet("fileName")
                     .doWrite(dataList);
         } catch (IOException e) {

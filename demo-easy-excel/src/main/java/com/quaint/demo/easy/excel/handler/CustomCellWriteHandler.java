@@ -30,6 +30,9 @@ public class CustomCellWriteHandler implements CellWriteHandler {
     public void beforeCellCreate(WriteSheetHolder writeSheetHolder, WriteTableHolder writeTableHolder, Row row,
                                  Head head, Integer columnIndex, Integer relativeRowIndex, Boolean isHead) {
         log.info("cell 创建之前");
+        if (relativeRowIndex==1 && columnIndex == 1){
+            System.out.println(this);
+        }
 
     }
 
