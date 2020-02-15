@@ -1,6 +1,8 @@
 package com.quaint.demo.zip.design;
 
+import java.io.IOException;
 import java.io.InputStream;
+import java.io.OutputStream;
 import java.util.List;
 
 /**
@@ -17,19 +19,20 @@ public interface CompressionStrategy <T> {
      */
     boolean support(String fileName);
 
-
     /**
      * 提取策略
      * @param inputStream 文件
      * @return 数据
+     * @throws IOException io
      */
-    List<T> extract(InputStream inputStream);
+    List<T> extract(InputStream inputStream) throws IOException;
 
     /**
      * 压缩策略
      * @param dataList 数据
-     * @return 文件
+     * @param os 输出流
+     * @throws IOException io
      */
-    InputStream compression(List<T> dataList);
+    void compression(List<T> dataList, OutputStream os) throws IOException;
 
 }
