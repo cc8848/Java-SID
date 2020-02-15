@@ -2,7 +2,6 @@ package com.quaint.demo.easy.excel.utils;
 
 import com.alibaba.excel.EasyExcel;
 import com.alibaba.excel.write.metadata.style.WriteCellStyle;
-import com.alibaba.excel.write.metadata.style.WriteFont;
 import com.quaint.demo.easy.excel.handler.CustomCellWriteHandler;
 import com.quaint.demo.easy.excel.handler.ProductWriteErrHandler;
 import org.apache.poi.ss.usermodel.FillPatternType;
@@ -56,7 +55,9 @@ public abstract class EasyExcelUtils {
         try {
             // 导出excel
             EasyExcel.write(response.getOutputStream(), clazz)
+                    // 设置过滤字段策略
                     .excludeColumnFiledNames(excludeFiledNames)
+                    // 选择导入时的 handler
                     .registerWriteHandler(handler)
                     .sheet("fileName")
                     .doWrite(dataList);
