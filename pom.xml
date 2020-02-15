@@ -12,6 +12,7 @@
         <module>demo-wechat</module>
         <module>demo-security</module>
         <module>demo-easy-excel</module>
+        <module>demo-zip</module>
     </modules>
 
     <!-- 父工程 -->
