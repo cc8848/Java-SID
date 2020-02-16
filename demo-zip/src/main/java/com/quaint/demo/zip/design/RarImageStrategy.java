@@ -12,7 +12,7 @@ import java.util.List;
 /**
  * @author quaint
  * @date 15 February 2020
- * @since 1.30
+ * @since master
  */
 @Component
 public class RarImageStrategy implements CompressionStrategy<ImageDto> {

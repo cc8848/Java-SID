@@ -16,7 +16,7 @@ import java.util.zip.ZipOutputStream;
 /**
  * @author quaint
  * @date 15 February 2020
- * @since 1.30
+ * @since master
  */
 @Component
 public class ZipImageStrategy implements CompressionStrategy<ImageDto> {
@@ -100,6 +100,5 @@ public class ZipImageStrategy implements CompressionStrategy<ImageDto> {
         }
         zos.close();
     }
-
 
 }
