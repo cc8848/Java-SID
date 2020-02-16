@@ -64,7 +64,16 @@ public class ZipImageStrategy implements CompressionStrategy<ImageDto> {
             // 添加图片到集合
             ImageDto imageDto = new ImageDto();
             imageDto.setFileName(name.substring(name.lastIndexOf(File.separator) + 1));
-            imageDto.setBytes(ze.getExtra());
+
+            // 将文件转换为 byte 数组
+            ByteArrayOutputStream output = new ByteArrayOutputStream();
+            byte[] buffer = new byte[1024];
+            int n;
+            while(-1 != (n = zis.read(buffer))) {
+                output.write(buffer, 0, n);
+            }
+
+            imageDto.setBytes(output.toByteArray());
             dataList.add(imageDto);
 
         }
