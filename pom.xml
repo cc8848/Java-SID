@@ -13,6 +13,7 @@
         <module>demo-security</module>
         <module>demo-easy-excel</module>
         <module>demo-zip</module>
+        <module>demo-test</module>
     </modules>
 
     <!-- 父工程 -->
