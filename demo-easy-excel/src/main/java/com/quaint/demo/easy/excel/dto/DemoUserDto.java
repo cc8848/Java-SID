@@ -2,6 +2,7 @@ package com.quaint.demo.easy.excel.dto;
 
 import com.alibaba.excel.annotation.ExcelProperty;
 import com.alibaba.excel.annotation.format.DateTimeFormat;
+import com.quaint.demo.easy.excel.ann.ExcelPropertyNotNull;
 import com.quaint.demo.easy.excel.helper.LocalDateConverter;
 import lombok.AllArgsConstructor;
 import lombok.Data;
@@ -42,6 +43,7 @@ public class DemoUserDto extends DemoParentDto{
     private LocalDate birthday;
 
     @ExcelProperty(value = {"存款"})
+    @ExcelPropertyNotNull(message = "不可为空")
     private BigDecimal money;
 
 

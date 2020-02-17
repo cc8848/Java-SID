@@ -5,6 +5,7 @@ import com.alibaba.excel.context.AnalysisContext;
 import com.alibaba.excel.event.AnalysisEventListener;
 import com.alibaba.excel.exception.ExcelDataConvertException;
 import com.alibaba.fastjson.JSONObject;
+import com.quaint.demo.easy.excel.ann.ExcelPropertyNotNull;
 import com.quaint.demo.easy.excel.dto.DemoUserDto;
 import lombok.Data;
 import lombok.EqualsAndHashCode;
@@ -13,6 +14,7 @@ import org.springframework.context.annotation.Scope;
 import org.springframework.stereotype.Component;
 
 import javax.annotation.Resource;
+import java.lang.reflect.Field;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -66,6 +68,24 @@ public class DemoUserListener extends AnalysisEventListener<DemoUserDto> {
     @Override
     public void invoke(DemoUserDto data, AnalysisContext context) {
         log.info("解析到一条数据:{}", JSONObject.toJSONString(data));
+
+        // 校验非空
+        Field[] fields = DemoUserDto.class.getDeclaredFields();
+        for (Field f: fields) {
+            f.setAccessible(true);
+            ExcelPropertyNotNull ann = f.getAnnotation(ExcelPropertyNotNull.class);
+            if (null != ann && ann.open()){
+                try {
+                    if(null == f.get(data)){
+                        log.info("有一条数据未通过校验,message[{}]",ann.message());
+                        return;
+                    }
+                } catch (IllegalAccessException e) {
+                    e.printStackTrace();
+                }
+            }
+        }
+
         list.add(data);
         // 达到BATCH_COUNT了，需要去存储一次数据库，防止数据几万条数据在内存，容易OOM
         if (list.size() >= BATCH_COUNT) {
