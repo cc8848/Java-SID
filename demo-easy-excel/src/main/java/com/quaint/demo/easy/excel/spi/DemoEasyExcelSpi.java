@@ -63,8 +63,10 @@ public class DemoEasyExcelSpi implements ApplicationContextAware {
             // 读取 web 上传的文件
             List<DemoUserDto> demoUserList;
             try {
+                long start = System.currentTimeMillis();
                 EasyExcel.read(inExcel.getInputStream(), DemoUserDto.class, demoUserListener).sheet().doRead();
                 demoUserList = demoUserListener.getVirtualDataBase();
+                System.out.println(System.currentTimeMillis()-start+"<-----总共耗时");
             } catch (IOException e) {
                 e.printStackTrace();
                 return null;
