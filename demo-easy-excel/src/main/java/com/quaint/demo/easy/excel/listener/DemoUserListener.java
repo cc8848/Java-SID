@@ -78,6 +78,7 @@ public class DemoUserListener extends AnalysisEventListener<DemoUserDto> {
                 try {
                     if(null == f.get(data)){
                         log.info("有一条数据未通过校验,message[{}]",ann.message());
+                        log.info("列号：[{}]",ann.col());
                         return;
                     }
                 } catch (IllegalAccessException e) {
