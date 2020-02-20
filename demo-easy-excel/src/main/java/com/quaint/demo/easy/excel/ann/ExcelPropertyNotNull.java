@@ -12,15 +12,18 @@ import java.lang.annotation.*;
 public @interface ExcelPropertyNotNull {
 
     /**
-     * 开启校验
-     * @return
+     * @return 开启校验
      */
     boolean open() default true;
 
     /**
-     * 提示消息
-     * @return
+     * @return 提示消息
      */
     String message() default "";
+
+    /**
+     * @return 列号
+     */
+    int col() default -1;
 
 }

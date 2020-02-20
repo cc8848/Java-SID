@@ -43,7 +43,7 @@ public class DemoUserDto extends DemoParentDto{
     private LocalDate birthday;
 
     @ExcelProperty(value = {"存款"})
-    @ExcelPropertyNotNull(message = "不可为空")
+    @ExcelPropertyNotNull(message = "不可为空", col = 4)
     private BigDecimal money;
 
 
