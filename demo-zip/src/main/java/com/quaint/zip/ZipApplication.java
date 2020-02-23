@@ -1,4 +1,4 @@
-package com.quaint.demo.zip;
+package com.quaint.zip;
 
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;

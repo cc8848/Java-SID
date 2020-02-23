@@ -1,6 +1,6 @@
-package com.quaint.demo.zip.design;
+package com.quaint.zip.design;
 
-import com.quaint.demo.zip.dto.ImageDto;
+import com.quaint.zip.dto.ImageDto;
 import org.apache.commons.lang3.StringUtils;
 import org.springframework.stereotype.Component;
 import org.springframework.util.CollectionUtils;
@@ -48,6 +48,8 @@ public class ZipImageStrategy implements CompressionStrategy<ImageDto> {
 
         // 定义储存数据的list
         List<ImageDto> dataList = new ArrayList<>();
+
+        // 这里 360 中文zip 会有字符集问题
 
         // 把输入流 包装为 压缩流
         ZipInputStream zis = new ZipInputStream(inputStream);

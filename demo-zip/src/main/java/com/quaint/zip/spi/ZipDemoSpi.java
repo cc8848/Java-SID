@@ -1,7 +1,7 @@
-package com.quaint.demo.zip.spi;
+package com.quaint.zip.spi;
 
-import com.quaint.demo.zip.design.CompressionStrategy;
-import com.quaint.demo.zip.dto.ImageDto;
+import com.quaint.zip.design.CompressionStrategy;
+import com.quaint.zip.dto.ImageDto;
 import io.swagger.annotations.Api;
 import io.swagger.annotations.ApiOperation;
 import lombok.extern.slf4j.Slf4j;

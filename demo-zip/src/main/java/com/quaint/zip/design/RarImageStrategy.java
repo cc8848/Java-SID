@@ -1,6 +1,6 @@
-package com.quaint.demo.zip.design;
+package com.quaint.zip.design;
 
-import com.quaint.demo.zip.dto.ImageDto;
+import com.quaint.zip.dto.ImageDto;
 import org.apache.commons.lang3.StringUtils;
 import org.springframework.stereotype.Component;
 

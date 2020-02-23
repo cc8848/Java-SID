@@ -1,4 +1,4 @@
-package com.quaint.demo.zip.dto;
+package com.quaint.zip.dto;
 
 import lombok.Data;
 

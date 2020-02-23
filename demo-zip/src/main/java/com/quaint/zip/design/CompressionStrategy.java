@@ -1,4 +1,4 @@
-package com.quaint.demo.zip.design;
+package com.quaint.zip.design;
 
 import java.io.IOException;
 import java.io.InputStream;

@@ -1,4 +1,4 @@
-package com.quaint.demo.zip.config;
+package com.quaint.zip.config;
 
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
