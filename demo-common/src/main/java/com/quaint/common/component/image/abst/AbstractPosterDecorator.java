@@ -6,6 +6,7 @@ import lombok.Data;
 import java.awt.image.BufferedImage;
 
 /**
+ * 海报装饰抽象类
  * @author quaint
  * @date 21 February 2020
  * @since master

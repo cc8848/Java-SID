@@ -4,7 +4,7 @@ import java.awt.image.BufferedImage;
 import java.io.IOException;
 
 /**
- * 海报绘制
+ * 海报绘制接口定义
  * @author quaint
  * @date 21 February 2020
  * @since master
