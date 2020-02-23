@@ -1,7 +1,7 @@
-package com.quaint.common.image.draw;
+package com.quaint.common.component.image.draw;
 
-import com.quaint.common.image.abst.PosterDraw;
-import com.quaint.common.image.content.FriendCirclePoster;
+import com.quaint.common.component.image.abst.PosterDraw;
+import com.quaint.common.component.image.content.FriendCirclePoster;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.stereotype.Component;
 

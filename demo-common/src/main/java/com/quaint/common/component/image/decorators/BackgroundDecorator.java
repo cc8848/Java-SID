@@ -1,7 +1,7 @@
-package com.quaint.common.image.decorators;
+package com.quaint.common.component.image.decorators;
 
-import com.quaint.common.image.abst.AbstractPosterDecorator;
-import com.quaint.common.image.abst.Poster;
+import com.quaint.common.component.image.abst.AbstractPosterDecorator;
+import com.quaint.common.component.image.abst.Poster;
 import lombok.Builder;
 
 import java.awt.*;

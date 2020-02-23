@@ -1,10 +1,10 @@
-package com.quaint.common.image.draw;
+package com.quaint.common.component.image.draw;
 
-import com.quaint.common.image.abst.PosterDraw;
-import com.quaint.common.image.content.MiniAppCardPoster;
-import com.quaint.common.image.decorators.BackgroundDecorator;
-import com.quaint.common.image.decorators.ImageDecorator;
-import com.quaint.common.image.decorators.TextDecorator;
+import com.quaint.common.component.image.abst.PosterDraw;
+import com.quaint.common.component.image.content.MiniAppCardPoster;
+import com.quaint.common.component.image.decorators.BackgroundDecorator;
+import com.quaint.common.component.image.decorators.ImageDecorator;
+import com.quaint.common.component.image.decorators.TextDecorator;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.stereotype.Component;
 

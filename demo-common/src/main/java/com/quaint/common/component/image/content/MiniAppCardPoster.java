@@ -1,6 +1,6 @@
-package com.quaint.common.image.content;
+package com.quaint.common.component.image.content;
 
-import com.quaint.common.image.abst.AbstractPoster;
+import com.quaint.common.component.image.abst.AbstractPoster;
 import lombok.Builder;
 import lombok.Data;
 import lombok.EqualsAndHashCode;

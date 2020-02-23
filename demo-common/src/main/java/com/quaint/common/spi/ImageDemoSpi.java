@@ -1,7 +1,7 @@
 package com.quaint.common.spi;
 
-import com.quaint.common.image.abst.PosterDraw;
-import com.quaint.common.image.content.MiniAppCardPoster;
+import com.quaint.common.component.image.abst.PosterDraw;
+import com.quaint.common.component.image.content.MiniAppCardPoster;
 import io.swagger.annotations.Api;
 import io.swagger.annotations.ApiOperation;
 import lombok.extern.slf4j.Slf4j;

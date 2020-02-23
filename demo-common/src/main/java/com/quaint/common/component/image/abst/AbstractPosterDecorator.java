@@ -1,4 +1,4 @@
-package com.quaint.common.image.abst;
+package com.quaint.common.component.image.abst;
 
 import lombok.AllArgsConstructor;
 import lombok.Data;
