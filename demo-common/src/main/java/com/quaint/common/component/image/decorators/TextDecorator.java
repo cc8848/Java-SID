@@ -6,6 +6,7 @@ import lombok.Builder;
 import lombok.Data;
 import lombok.EqualsAndHashCode;
 import org.apache.commons.lang3.StringUtils;
+import sun.font.FontDesignMetrics;
 
 import java.awt.*;
 import java.awt.image.BufferedImage;
@@ -38,7 +39,7 @@ public class TextDecorator extends AbstractPosterDecorator {
     /**
      * 字体颜色
      */
-    private Color color = new Color(255,255,255);
+    private Color color = new Color(255, 255, 255);
 
     /**
      * 内容
@@ -50,20 +51,32 @@ public class TextDecorator extends AbstractPosterDecorator {
      */
     private boolean delLine = false;
 
+    /**
+     * 是否根据 width 换行, 配合 width 使用
+     */
+    private boolean newLine = false;
+
+    /**
+     * 换行限制次数
+     */
+    private int newLineLimit = 1;
+
 
     public TextDecorator(Poster poster) {
         super(poster);
     }
 
     @Builder(toBuilder = true)
-    public TextDecorator(Poster poster, int positionX, int positionY, int width, int height, Font font, int fontSize, Color color, String content, int fontStyle, boolean delLine) {
-        super(poster,positionX,positionY,width,height);
+    public TextDecorator(Poster poster, int positionX, int positionY, int width, int height, Font font, int fontSize, Color color, String content, int fontStyle, boolean delLine, boolean newLine, int newLineLimit) {
+        super(poster, positionX, positionY, width, height);
         this.font = font;
         this.fontSize = fontSize;
         this.color = color;
         this.content = content;
         this.fontStyle = fontStyle;
         this.delLine = delLine;
+        this.newLine = newLine;
+        this.newLineLimit = newLineLimit;
     }
 
     @Override
@@ -79,9 +92,9 @@ public class TextDecorator extends AbstractPosterDecorator {
      * @param image image
      * @return image
      */
-    private BufferedImage drawText(BufferedImage image){
+    private BufferedImage drawText(BufferedImage image) {
 
-        if (StringUtils.isEmpty(content)){
+        if (StringUtils.isEmpty(content)) {
             return image;
         }
 
@@ -89,19 +102,58 @@ public class TextDecorator extends AbstractPosterDecorator {
         font = font.deriveFont(fontStyle, fontSize);
         Graphics2D g = image.createGraphics();
         // 设置文字抗锯齿算法
-        g.setRenderingHint(RenderingHints.KEY_ANTIALIASING , RenderingHints.VALUE_ANTIALIAS_ON);
+        g.setRenderingHint(RenderingHints.KEY_ANTIALIASING, RenderingHints.VALUE_ANTIALIAS_ON);
         g.setFont(font);
         g.setColor(color);
-        g.drawString(content, positionX, positionY+fontSize);
-        if (delLine){
-            // 计算非汉字长度
-            int shortNum = content.replaceAll("[^0-9,a-z,A-Z,.]", "").length();
-            // 汉字长度
-            int longNum = content.length()-shortNum;
-            // 删除线长度 = (汉字长度 * size) + ((字符长度+1) * size/2)
-            int num = longNum + (shortNum+1)/2;
-            g.drawLine(positionX-fontSize/3,positionY+3*fontSize/5,positionX+fontSize*num,positionY+3*fontSize/5);
+
+        // 计算非汉字长度
+        int shortNum = content.replaceAll("[^0-9,a-z,A-Z,.]", "").length();
+        // 汉字长度
+        int longNum = content.length() - shortNum;
+        // 删除线长度 = (汉字长度 * size) + ((字符长度+1) * size/2)
+        int num = longNum + (shortNum + 1) / 2;
+        // 换行
+        if (newLine && width > fontSize) {
+            //【商品名称换行判断逻辑】
+            FontMetrics fm = FontDesignMetrics.getMetrics(font);
+            // 换行修正最后一个文字越界.
+            width = width - fontSize/2;
+
+            int charWidth = 0;
+            int lineLimit = newLineLimit;
+            StringBuilder sb = new StringBuilder();
+
+            for (int i = 0; lineLimit >= 0 && i < content.length(); i++) {
+                charWidth += fm.charWidth(content.charAt(i));
+                sb.append(content.charAt(i));
+                // 如果宽度 > width 换行
+                if (charWidth > width * (newLineLimit-lineLimit+1)) {
+                    g.drawString(sb.toString(), positionX, positionY + fontSize + (newLineLimit-lineLimit) * fontSize);
+                    sb.setLength(0);
+                    lineLimit--;
+                    continue;
+                }
+                // 如果超过 换行次数限制 则后面省略 改为...
+                if (charWidth > width * (newLineLimit + 1) - 2 * fontSize) {
+                    sb.append("...");
+                    g.drawString(sb.toString(), positionX, positionY + fontSize + (newLineLimit-lineLimit) * fontSize);
+                    break;
+                }
+                // 如果前两个if没有进，则直接添加
+                if (i == content.length() - 1) {
+                    g.drawString(sb.toString(), positionX, positionY + fontSize + ((newLineLimit-lineLimit)) * fontSize);
+                }
+            }
+
+        } else {
+            g.drawString(content, positionX, positionY + fontSize);
         }
+
+        // 删除线暂时不支持换行
+        if (delLine && !newLine) {
+            g.drawLine(positionX - fontSize / 3, positionY + 3 * fontSize / 5, positionX + fontSize * num, positionY + 3 * fontSize / 5);
+        }
+
         g.dispose();
         return image;
     }

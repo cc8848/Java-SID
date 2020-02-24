@@ -40,12 +40,12 @@ public class BackgroundDecorator extends AbstractPosterDecorator {
      */
     private BufferedImage drawBackground(BufferedImage image){
 
-        // 如果宽度没变化
-        if (width == image.getWidth() && height == image.getHeight()){
+        // 如果宽度没设置
+        if (width == 0 && height == 0){
             return image;
         }
         // 调整背景宽度
-        if (width!=0 && height !=0){
+        if (width != image.getWidth() || height != image.getHeight()){
             BufferedImage newImage = new BufferedImage(width, height, BufferedImage.TYPE_INT_BGR);
             Graphics2D g = newImage.createGraphics();
             g.drawImage(image,0,0,width,height,null);
